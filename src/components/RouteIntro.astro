@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import routeMap from '../assets/images/route-map-desktop.jpg';
+---
+
+<section class="route-intro section">
+  <div class="container">
+    <div class="route-intro__copy reveal">
+      <h1>The Route</h1>
+      <p class="lede">
+        There are sixteen historical cannons to link up in order. If riding the route, you'll need
+        to choose your bike carefully as there is a mixture of terrain, including road, cobbles,
+        gravel and even some single-track. The majority of the route is paved, but just as it
+        starts getting tough towards the end of the route, you'll hit the gravel (and some
+        single-track) and start to make your way on the trails around the mountain before dropping
+        back down to your starting point at East City Cycles.
+      </p>
+      <div class="route-intro__ctas">
+        <a href="https://www.komoot.com/tour/1000368153" target="_blank" rel="noopener" class="btn">
+          View on Komoot
+        </a>
+        <a href="/cape-town-cannon-challenge.gpx" download class="btn btn--outline">
+          Download GPX
+        </a>
+      </div>
+      <p class="route-intro__stats">16 cannons &ndash; 160km &ndash; 2750m elevation</p>
+    </div>
+
+    <Image
+      src={routeMap}
+      alt="Map of the Cape Town Cannon Challenge route around the Cape Peninsula"
+      width={1600}
+      height={1200}
+      loading="lazy"
+      class="route-intro__map reveal"
+    />
+  </div>
+</section>
+
+<style>
+  .route-intro__copy {
+    max-width: 48rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .route-intro__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .route-intro__stats {
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: 1.5rem;
+    max-width: none;
+  }
+
+  .route-intro :global(.route-intro__map) {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+import { cannons } from '../data/cannons';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/cannons/*.jpg', {
+  eager: true,
+});
+
+function imageFor(filename: string) {
+  const entry = Object.entries(images).find(([path]) => path.endsWith(filename));
+  if (!entry) throw new Error(`Missing cannon image: ${filename}`);
+  return entry[1].default;
+}
+---
+
+<section class="cannon-list section">
+  <div class="container">
+    <h2 class="reveal">The Cannons</h2>
+
+    <ol class="cannon-list__grid">
+      {
+        cannons.map((cannon) => (
+          <li class="cannon-card reveal">
+            <div class="cannon-card__image-wrap">
+              <Image
+                src={imageFor(cannon.image)}
+                alt={cannon.name}
+                width={640}
+                height={480}
+                loading="lazy"
+                class="cannon-card__image"
+              />
+              <span class="cannon-card__number">{cannon.order}</span>
+            </div>
+
+            <div class="cannon-card__body">
+              <h5>{cannon.name}</h5>
+              <ul class="tag-list">
+                <li class="tag">{cannon.terrain}</li>
+              </ul>
+              <p>{cannon.description}</p>
+              <a
+                href={`https://what3words.com/${cannon.what3words.replace(/^\/+/, '')}`}
+                target="_blank"
+                rel="noopener"
+                class="cannon-card__w3w"
+              >
+                {cannon.what3words}
+              </a>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .cannon-list h2 {
+    margin-bottom: 2.5rem;
+  }
+
+  .cannon-list__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .cannon-card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .cannon-card__image-wrap {
+    position: relative;
+  }
+
+  .cannon-card :global(.cannon-card__image) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .cannon-card__number {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: var(--color-accent);
+    color: #fff;
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: 0.85rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+  }
+
+  .cannon-card__body {
+    padding: 1.25rem;
+  }
+
+  .cannon-card__body h5 {
+    margin-bottom: 0.6rem;
+  }
+
+  .cannon-card__body p {
+    font-size: 0.92rem;
+    color: #333;
+    max-width: none;
+  }
+
+  .cannon-card__w3w {
+    display: inline-block;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+</style>

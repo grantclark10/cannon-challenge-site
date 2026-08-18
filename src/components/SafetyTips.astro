@@ -1,0 +1,48 @@
+---
+const tips = [
+  'Download the What3Words app to easily locate each cannon on the route.',
+  'Ideally, ride/run with a partner and let someone know your route and expected finish time.',
+  'Save the Wilderness Search and Rescue Number in your phone – 021 937 0300.',
+  'Use a tracking app on your phone or carry a tracking device like a Spot.',
+  'Most of the time you will be on public roads and have mobile phone reception, but there are sections where reception might be limited. Please keep in mind where possible exit points are when you head onto the mountain sections.',
+  'Please adhere to the South African National Parks rules and regulations when doing the Cape Town Cannon Challenge.',
+  'Please note that the Cannon Challenge or any of its sponsors and/or associates cannot be held liable for your personal safety during the challenge and your participation in the challenge is entirely at your own risk.',
+];
+---
+
+<section class="safety-tips section section--surface">
+  <div class="container">
+    <h2 class="reveal">Safety Tips</h2>
+    <p class="lede reveal">
+      Whenever you are riding or running around the Cape Peninsula, please always be aware of your
+      surroundings and know that some areas of the peninsula may need extra caution and vigilance
+      when riding or running through them.
+    </p>
+    <ul class="safety-tips__list reveal">
+      {tips.map((tip) => <li>{tip}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .safety-tips h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .safety-tips .lede {
+    max-width: 60rem;
+    margin-bottom: 2rem;
+  }
+
+  .safety-tips__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 60rem;
+    padding-left: 1.5rem;
+  }
+
+  .safety-tips__list li {
+    padding-left: 0.5rem;
+  }
+</style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cannonchallenge.capetown/sitemap-index.xml

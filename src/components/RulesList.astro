@@ -1,0 +1,36 @@
+---
+const rules = [
+  "The route takes place over public roads and tracks, please don't be a dick and be courteous and polite when you pass other riders or runners.",
+  'Sometimes the gates to the cannons or guns will be shut, please obey the rules and do not trespass.',
+  "If you are attempting to go for the FKT (Fastest Known Time), you need to tag (touch) each cannon. If the gates are closed, then you need to tag the gate, i.e as close to the cannon as you can get. This is all based on the honesty system, so you can lie, but karma is a bitch.",
+  'You must adhere to the normal traffic road rules for cyclists and runners as well as the South African National Parks rules and regulations.',
+  "There is no time limit on the route and you don't have to submit proof to say you've completed it, it's based on an honesty system and is more about the enjoyment of riding your bike around the most beautiful environments in the world.",
+];
+---
+
+<section class="rules section section--surface">
+  <div class="container">
+    <h2 class="reveal">The Rules</h2>
+    <ol class="rules__list reveal">
+      {rules.map((rule) => <li>{rule}</li>)}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .rules h2 {
+    margin-bottom: 1.75rem;
+  }
+
+  .rules__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 60rem;
+    padding-left: 1.5rem;
+  }
+
+  .rules__list li {
+    padding-left: 0.5rem;
+  }
+</style>

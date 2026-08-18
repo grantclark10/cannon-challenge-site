@@ -1,0 +1,229 @@
+---
+// Sticky header nav — real routes (this is a multi-page site, unlike a
+// single-page scroller), so links are actual hrefs, not same-page anchors.
+import { Image } from 'astro:assets';
+import logo from '../assets/logo/ctcc-logo-white.png';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/route/', label: 'The Route' },
+  { href: '/challenge/', label: 'The Challenge' },
+  { href: '/wall-of-honour/', label: 'Wall of Honour' },
+  { href: '/ride-for-a-cause/', label: 'Ride for a Cause' },
+  { href: '/contact/', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__brand" aria-label="Cape Town Cannon Challenge home">
+      <Image src={logo} alt="Cape Town Cannon Challenge logo" width={220} height={116} loading="eager" />
+    </a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      id="nav-toggle"
+    >
+      <span class="visually-hidden">Toggle menu</span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <nav aria-label="Primary navigation" id="nav-links" class="nav__links">
+      <ul>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="nav__socials">
+        <li>
+          <a href="https://www.instagram.com/capetowncannonchallenge/" target="_blank" rel="noopener">
+            <span class="visually-hidden">Instagram</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.07 1.2.06 2.1.26 2.8.55.8.3 1.4.7 2 1.3.6.6 1 1.2 1.3 2 .3.7.5 1.6.55 2.8.06 1.2.07 1.6.07 4.8s0 3.6-.07 4.8c-.06 1.2-.26 2.1-.55 2.8-.3.8-.7 1.4-1.3 2-.6.6-1.2 1-2 1.3-.7.3-1.6.5-2.8.55-1.2.06-1.6.07-4.8.07s-3.6 0-4.8-.07c-1.2-.06-2.1-.26-2.8-.55-.8-.3-1.4-.7-2-1.3-.6-.6-1-1.2-1.3-2-.3-.7-.5-1.6-.55-2.8C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.8c.06-1.2.26-2.1.55-2.8.3-.8.7-1.4 1.3-2 .6-.6 1.2-1 2-1.3.7-.3 1.6-.5 2.8-.55C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5 0-4.74.07-1 .05-1.6.2-1.97.35-.5.19-.85.42-1.22.79-.37.37-.6.72-.79 1.22-.14.37-.3.96-.35 1.97C3.8 8.5 3.8 8.86 3.8 12s0 3.5.13 4.6c.05 1 .2 1.6.35 1.97.19.5.42.85.79 1.22.37.37.72.6 1.22.79.37.14.96.3 1.97.35 1.24.06 1.6.07 4.74.07s3.5 0 4.74-.07c1-.05 1.6-.2 1.97-.35.5-.19.85-.42 1.22-.79.37-.37.6-.72.79-1.22.14-.37.3-.96.35-1.97.06-1.1.07-1.46.07-4.6s0-3.5-.07-4.6c-.05-1-.2-1.6-.35-1.97a3.3 3.3 0 0 0-.79-1.22 3.3 3.3 0 0 0-1.22-.79c-.37-.14-.96-.3-1.97-.35C15.5 4 15.14 4 12 4zm0 3.9a4.1 4.1 0 1 1 0 8.2 4.1 4.1 0 0 1 0-8.2zm0 1.8a2.3 2.3 0 1 0 0 4.6 2.3 2.3 0 0 0 0-4.6zm5.2-2a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/capetowncannonchallenge" target="_blank" rel="noopener">
+            <span class="visually-hidden">Facebook</span>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.7h2.6l.4-3H13.5V8.3c0-.87.24-1.46 1.5-1.46h1.6V4.14C16.3 4.1 15.3 4 14.2 4c-2.5 0-4.2 1.5-4.2 4.3v2h-2.6v3h2.6V21h3.5z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.94);
+    color: #fff;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .nav__brand img {
+    height: 52px;
+    width: auto;
+  }
+
+  .nav__toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #fff;
+  }
+
+  .nav__toggle-bar,
+  .nav__toggle-bar::before,
+  .nav__toggle-bar::after {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .nav__toggle-bar::before,
+  .nav__toggle-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .nav__toggle-bar::before {
+    top: -8px;
+  }
+
+  .nav__toggle-bar::after {
+    top: 8px;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav__links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__links a {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+
+  .nav__links a:hover,
+  .nav__links a:focus-visible,
+  .nav__links a[aria-current='page'] {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .nav__socials a {
+    display: flex;
+    color: #fff;
+    opacity: 0.85;
+  }
+
+  .nav__socials a:hover,
+  .nav__socials a:focus-visible {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .nav__toggle {
+      display: inline-flex;
+    }
+
+    .nav__links {
+      position: fixed;
+      inset: var(--nav-height) 0 0 0;
+      background: #000;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 2rem var(--section-padding-x);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .nav__links.is-open {
+      transform: translateX(0);
+    }
+
+    .nav__links ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .nav__links a {
+      font-size: 1.1rem;
+    }
+
+    .nav__socials {
+      flex-direction: row !important;
+      margin-top: 1rem;
+      gap: 1.5rem !important;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  links?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      links.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

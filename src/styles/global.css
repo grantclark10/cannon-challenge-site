@@ -1,0 +1,322 @@
+/* ==========================================================================
+   Cape Town Cannon Challenge — global styles
+   Brand tokens pulled from the original Elementor kit's compiled CSS
+   (post-6.css --e-global-color-* / --e-global-typography-*): black/white
+   with a single red accent, bold uppercase Work Sans headings over Roboto
+   body copy. Don't add new colours here; pull from the tokens below.
+   ========================================================================== */
+
+:root {
+  --color-bg: #ffffff; /* page background */
+  --color-surface: #f5f5f5; /* section backgrounds, cards */
+  --color-ink: #1a1a1a; /* near-black — dark section backgrounds */
+  --color-text: #000000; /* body copy & headings */
+  --color-primary: #000000; /* primary UI colour (nav, borders) */
+  --color-secondary: #c4c4c4; /* muted borders, secondary text */
+  --color-accent: #d82727; /* BOOM red — buttons, links, key CTAs */
+
+  --font-title: 'Work Sans', system-ui, sans-serif;
+  --font-body: 'Roboto', system-ui, sans-serif;
+
+  --max-width: 1280px;
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --section-padding-x: clamp(1.25rem, 5vw, 3rem);
+
+  --radius-sm: 4px;
+  --radius-pill: 999px;
+
+  --nav-height: 84px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-title);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(2rem, 3vw + 1rem, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1rem, 1vw + 0.85rem, 1.4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+h4 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+h5 {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 65ch;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--section-padding-x);
+}
+
+.section {
+  padding-block: var(--section-padding-y);
+  position: relative;
+}
+
+.section--surface {
+  background: var(--color-surface);
+}
+
+.section--ink {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.section--ink h1,
+.section--ink h2,
+.section--ink h3,
+.section--ink h4,
+.section--ink h5 {
+  color: #fff;
+}
+
+.section-intro {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--color-text);
+  max-width: 52ch;
+}
+
+/* Buttons — sharp corners, uppercase, red fill: matches the original
+   Elementor button kit exactly (border-radius 0, bold uppercase Work Sans,
+   white text on the accent red). ---------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1rem 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-accent);
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #b31f1f;
+  border-color: #b31f1f;
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.btn--outline-light {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn--outline-light:hover,
+.btn--outline-light:focus-visible {
+  background: #fff;
+  border-color: #fff;
+  color: var(--color-text);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Tags / pills ---------------------------------------------------------- */
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 0 0.9rem;
+  padding: 0;
+}
+
+.tag {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.tag--accent {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Scroll-reveal motion --------------------------------------------------- */
+
+:root {
+  --reveal-duration: 0.8s;
+  --reveal-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--reveal-duration) ease, transform var(--reveal-duration)
+    var(--reveal-easing);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 1rem;
+  background: var(--color-text);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}

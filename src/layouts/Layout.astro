@@ -1,0 +1,160 @@
+---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import ogSourceImage from '../assets/images/og-social-image.jpg';
+import logoSourceImage from '../assets/logo/ctcc-logo-white.png';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Cape Town Cannon Challenge — 16 Cannons, 160km, 2750m Elevation',
+  description = 'A unique mixed-terrain route taking in all of the historic cannons around the Cape Peninsula. Ride or run it, solo or as a relay — 160km, 2750m elevation, 16 cannons.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const ogImage = await getImage({ src: ogSourceImage, width: 1200, height: 630, format: 'webp' });
+const ogImageURL = new URL(ogImage.src, Astro.site);
+const logoImage = await getImage({ src: logoSourceImage, width: 600, format: 'png' });
+const logoImageURL = new URL(logoImage.src, Astro.site);
+
+// Organization structured data — the original site's own JSON-LD used a
+// plain Organization (no physical storefront to cite as a LocalBusiness),
+// so this keeps the same shape rather than inventing an address.
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${Astro.site}#organization`,
+  name: 'Cape Town Cannon Challenge',
+  description,
+  url: Astro.site?.toString(),
+  logo: logoImageURL.toString(),
+  image: ogImageURL.toString(),
+  sameAs: [
+    'https://www.instagram.com/capetowncannonchallenge/',
+    'https://www.facebook.com/capetowncannonchallenge',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cape Town Cannon Challenge" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="en_ZA" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Fonts: preconnect for speed, then load only the weights we use -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600;700;800&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@600;700;800&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} is:inline />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <slot />
+
+    <script>
+      // Gentle scroll-reveal: fade + rise sections into view as the visitor
+      // scrolls. Respects prefers-reduced-motion via the CSS in global.css.
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && revealEls.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+        );
+        revealEls.forEach((el) => observer.observe(el));
+
+        // Safety net: some browsers/extensions throttle IntersectionObserver
+        // callbacks (e.g. backgrounded or non-visible tabs), which could
+        // otherwise leave content stuck invisible. Force everything visible
+        // after a short delay regardless of observer state.
+        setTimeout(() => {
+          revealEls.forEach((el) => el.classList.add('is-visible'));
+        }, 2000);
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+
+    <script>
+      // Eased, inertial scrolling instead of the browser's instant
+      // wheel/touch response. Skipped entirely for prefers-reduced-motion.
+      import Lenis from 'lenis';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({
+          duration: 1.0,
+          easing: (t: number) => 1 - Math.pow(1 - t, 3),
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        const navHeight =
+          parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) ||
+          0;
+
+        document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+          link.addEventListener('click', (event) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            event.preventDefault();
+            lenis.scrollTo(target as HTMLElement, { offset: -navHeight });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

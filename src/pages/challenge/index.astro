@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import ChallengeIntro from '../../components/ChallengeIntro.astro';
+import RulesList from '../../components/RulesList.astro';
+import KitList from '../../components/KitList.astro';
+import SafetyTips from '../../components/SafetyTips.astro';
+import SponsorStrip from '../../components/SponsorStrip.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="The Challenge — Cape Town Cannon Challenge"
+  description="Cape Town Cannon Challenge details. Tag all of the historical cannons on this mixed-terrain route around Cape Town. Do it in one day or over multi days."
+>
+  <Nav />
+  <main id="main">
+    <ChallengeIntro />
+    <RulesList />
+    <KitList />
+    <SafetyTips />
+    <SponsorStrip />
+  </main>
+  <Footer />
+</Layout>

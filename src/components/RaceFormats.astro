@@ -1,0 +1,84 @@
+---
+const formats = [
+  {
+    name: 'Cannon Challenge',
+    description: '16 cannons, 160km, 2750m elevation — the full mixed-terrain route around the Cape Peninsula.',
+    cta: { label: 'Learn more', href: '/route/' },
+  },
+  {
+    name: 'Cannon Challenge One Day Event',
+    description: 'A single-day, organised edition of the challenge.',
+    cta: { label: 'Coming soon', href: null },
+  },
+  {
+    name: 'Cannon Challenge 100 Miler',
+    description: 'A longer-distance variant of the route.',
+    cta: { label: 'Coming soon', href: null },
+  },
+];
+---
+
+<section class="race-formats section section--surface">
+  <div class="container">
+    <div class="race-formats__grid">
+      {
+        formats.map((format) => (
+          <div class="race-formats__card reveal">
+            <h2>{format.name}</h2>
+            <p>{format.description}</p>
+            {format.cta.href ? (
+              <a href={format.cta.href} class="btn">
+                {format.cta.label}
+              </a>
+            ) : (
+              <span class="btn btn--outline" aria-disabled="true">
+                {format.cta.label}
+              </span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .race-formats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .race-formats__card {
+    background: var(--color-bg);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .race-formats__card h2 {
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .race-formats__card p {
+    font-size: 0.92rem;
+    color: var(--color-secondary);
+  }
+
+  .race-formats__card .btn[aria-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 800px) {
+    .race-formats__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

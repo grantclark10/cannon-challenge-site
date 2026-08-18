@@ -1,0 +1,124 @@
+---
+// Wall of Honour leaderboard. Data is manually curated — see
+// src/data/wallOfHonour.ts for how to add a new finisher.
+import { wallOfHonour } from '../data/wallOfHonour';
+
+function formatDate(iso: string) {
+  return new Date(`${iso}T00:00:00`).toLocaleDateString('en-ZA', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+function formatTime(entry: (typeof wallOfHonour)[number]) {
+  return `${entry.timeHours}hr ${entry.timeMinutes}min ${entry.timeSeconds}sec`;
+}
+---
+
+<section class="leaderboard section">
+  <div class="container">
+    <h2 class="reveal">Riders</h2>
+
+    <div class="leaderboard__table-wrap reveal">
+      <table class="leaderboard__table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            wallOfHonour.map((entry) => (
+              <tr>
+                <td>{entry.rank}</td>
+                <td>
+                  {entry.name}
+                  {entry.isFemale && <span class="tag" title="Female category">F</span>}
+                  {entry.isRecordHolder && <span title="Course record holder"> 👑</span>}
+                </td>
+                <td>
+                  {entry.dateStart === entry.dateEnd
+                    ? formatDate(entry.dateStart)
+                    : `${formatDate(entry.dateStart)} – ${formatDate(entry.dateEnd)}`}
+                </td>
+                <td>{formatTime(entry)}</td>
+                <td class="leaderboard__links">
+                  {entry.stravaUrl && (
+                    <a href={entry.stravaUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Strava activity`}>
+                      Strava
+                    </a>
+                  )}
+                  {entry.instagramUrl && (
+                    <a href={entry.instagramUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Instagram profile`}>
+                      Instagram
+                    </a>
+                  )}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .leaderboard h2 {
+    margin-bottom: 1.75rem;
+  }
+
+  .leaderboard__table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .leaderboard__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 640px;
+  }
+
+  .leaderboard__table th,
+  .leaderboard__table td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+  }
+
+  .leaderboard__table th {
+    font-family: var(--font-title);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    background: var(--color-surface);
+  }
+
+  .leaderboard__table tbody tr:hover {
+    background: var(--color-surface);
+  }
+
+  .leaderboard__table .tag {
+    margin-left: 0.4rem;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .leaderboard__links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .leaderboard__links a {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+</style>

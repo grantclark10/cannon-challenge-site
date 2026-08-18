@@ -1,0 +1,64 @@
+---
+const kit = [
+  'Waterproof jacket',
+  'Base layer',
+  'Warm and waterproof gloves',
+  'Waterproof pants or long tights',
+  'Suncream',
+  'Vaseline / Anti Chafe',
+  'Fully-charged mobile phone',
+  'GPS computer or watch with the Cannon Challenge route loaded',
+  'Basic puncture kit (CO2 cannisters, pump, tubes, tyre levers etc)',
+];
+---
+
+<section class="kit section">
+  <div class="container">
+    <h2 class="reveal">Suggested Kit</h2>
+    <p class="lede reveal">
+      Have you got everything you need for a big day out? Cape Town and Table Mountain can be very
+      unpredictable with its weather, so please take sufficient cold and warm weather gear with you
+      if you think the weather is going to change or you are going to be out there for a long time.
+      There are bike shops along the route and East City Cycles in town is highly recommended.
+    </p>
+    <ul class="kit__list reveal">
+      {kit.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .kit h2 {
+    margin-bottom: 1.25rem;
+  }
+
+  .kit .lede {
+    max-width: 60rem;
+    margin-bottom: 2rem;
+  }
+
+  .kit__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem 1.5rem;
+  }
+
+  .kit__list li {
+    padding-left: 1.5rem;
+    position: relative;
+    font-weight: 500;
+  }
+
+  .kit__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import RouteIntro from '../../components/RouteIntro.astro';
+import RouteProfile from '../../components/RouteProfile.astro';
+import CannonList from '../../components/CannonList.astro';
+import SponsorStrip from '../../components/SponsorStrip.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="The Route — Cape Town Cannon Challenge"
+  description="Download the Cape Town Cannon Challenge route: 16 historical cannons, 160km, 2750m elevation around the Cape Peninsula."
+>
+  <Nav />
+  <main id="main">
+    <RouteIntro />
+    <RouteProfile />
+    <CannonList />
+    <SponsorStrip />
+  </main>
+  <Footer />
+</Layout>

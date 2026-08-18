@@ -1,0 +1,307 @@
+---
+// "Upload Your Challenge" popup — recreated from the client's screenshots
+// of the original Elementor popup form. Posts to Formspree (same pattern
+// as ContactForm.astro), including the optional photo via multipart
+// form data, which Formspree supports on all plans.
+---
+
+<button type="button" class="btn" id="upload-challenge-open">Upload Your Challenge</button>
+
+<dialog id="upload-challenge-dialog" class="upload-modal">
+  <div class="upload-modal__inner">
+    <button type="button" class="upload-modal__close" id="upload-challenge-close" aria-label="Close">
+      &times;
+    </button>
+
+    <h2>Upload Your Challenge</h2>
+    <p class="upload-modal__notice">
+      NB: Please upload your Total Elapsed Time for the route, not your Moving Time.
+    </p>
+
+    <form
+      action="https://formspree.io/f/myegbnvq"
+      method="POST"
+      enctype="multipart/form-data"
+      id="upload-challenge-form"
+      novalidate
+    >
+      <fieldset>
+        <legend>Challenge type: <span class="required">*</span></legend>
+        <label><input type="radio" name="challenge_type" value="One Day Challenge" required /> One Day Challenge</label>
+        <label><input type="radio" name="challenge_type" value="Multi-day Challenge" /> Multi-day Challenge</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Completed on: <span class="required">*</span></legend>
+        <label><input type="radio" name="completed_on" value="MTB bike" required /> MTB bike</label>
+        <label><input type="radio" name="completed_on" value="Road bike" /> Road bike</label>
+        <label><input type="radio" name="completed_on" value="Gravel bike" /> Gravel bike</label>
+        <label><input type="radio" name="completed_on" value="Foot" /> Foot</label>
+      </fieldset>
+
+      <div class="upload-modal__field">
+        <label for="uc-name">Full Name: <span class="required">*</span></label>
+        <input type="text" name="name" id="uc-name" required />
+      </div>
+
+      <div class="upload-modal__field">
+        <label for="uc-email">Email: <span class="required">*</span></label>
+        <input type="email" name="email" id="uc-email" required />
+      </div>
+
+      <div class="upload-modal__field">
+        <label for="uc-strava">Strava activity link: <span class="required">*</span></label>
+        <input type="url" name="strava_link" id="uc-strava" placeholder="e.g https://www.strava.com/activities/123456789" required />
+      </div>
+
+      <div class="upload-modal__field">
+        <label for="uc-instagram">Instagram profile:</label>
+        <input type="text" name="instagram" id="uc-instagram" />
+      </div>
+
+      <div class="upload-modal__field">
+        <label for="uc-address">Address: <span class="required">*</span></label>
+        <textarea name="address" id="uc-address" rows="3" required></textarea>
+      </div>
+
+      <div class="upload-modal__row">
+        <div class="upload-modal__field">
+          <label for="uc-start">Challenge start date <span class="required">*</span></label>
+          <input type="date" name="challenge_start_date" id="uc-start" required />
+        </div>
+        <div class="upload-modal__field">
+          <label for="uc-end">Challenge End Date <span class="required">*</span></label>
+          <input type="date" name="challenge_end_date" id="uc-end" required />
+        </div>
+      </div>
+
+      <div class="upload-modal__row">
+        <div class="upload-modal__field">
+          <label for="uc-hours">Total Time: Hours <span class="required">*</span></label>
+          <input type="number" name="time_hours" id="uc-hours" min="0" placeholder="Hours" required />
+        </div>
+        <div class="upload-modal__field">
+          <label for="uc-minutes">Minutes <span class="required">*</span></label>
+          <input type="number" name="time_minutes" id="uc-minutes" min="0" max="59" placeholder="Minutes" required />
+        </div>
+        <div class="upload-modal__field">
+          <label for="uc-seconds">Seconds <span class="required">*</span></label>
+          <input type="number" name="time_seconds" id="uc-seconds" min="0" max="59" placeholder="Seconds" required />
+        </div>
+      </div>
+
+      <div class="upload-modal__field">
+        <label for="uc-photo">Upload photo (max 2mb file size)</label>
+        <input type="file" name="photo" id="uc-photo" accept="image/*" />
+      </div>
+
+      <p class="upload-modal__error" role="alert" hidden></p>
+
+      <button type="submit" class="btn" id="upload-challenge-submit">Submit</button>
+    </form>
+
+    <div class="upload-modal__success" role="status" hidden>
+      <p>Thanks! Your result has been submitted — we'll add you to the Wall of Honour once it's verified.</p>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .upload-modal {
+    border: none;
+    padding: 0;
+    max-width: 40rem;
+    width: min(92vw, 40rem);
+    max-height: 88vh;
+    border-radius: var(--radius-sm);
+  }
+
+  .upload-modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .upload-modal__inner {
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    overflow-y: auto;
+    max-height: 88vh;
+  }
+
+  .upload-modal h2 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .upload-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+
+  .upload-modal__notice {
+    color: var(--color-accent);
+    text-align: center;
+    font-weight: 700;
+    max-width: none;
+    margin-bottom: 1.75rem;
+  }
+
+  #upload-challenge-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  #upload-challenge-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #upload-challenge-form legend {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.25rem;
+    padding: 0;
+  }
+
+  #upload-challenge-form fieldset label {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .required {
+    color: var(--color-accent);
+  }
+
+  .upload-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .upload-modal__field label {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .upload-modal__field input,
+  .upload-modal__field textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-secondary);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .upload-modal__field input:focus-visible,
+  .upload-modal__field textarea:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 1px;
+    border-color: var(--color-accent);
+  }
+
+  .upload-modal__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .upload-modal__row:has(#uc-hours) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .upload-modal__error {
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  #upload-challenge-submit {
+    align-self: stretch;
+  }
+
+  .upload-modal__success {
+    text-align: center;
+    font-family: var(--font-title);
+  }
+
+  @media (max-width: 480px) {
+    .upload-modal__row,
+    .upload-modal__row:has(#uc-hours) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const openBtn = document.getElementById('upload-challenge-open');
+  const closeBtn = document.getElementById('upload-challenge-close');
+  const dialog = document.getElementById('upload-challenge-dialog') as HTMLDialogElement | null;
+  const form = document.getElementById('upload-challenge-form') as HTMLFormElement | null;
+  const errorEl = document.querySelector('.upload-modal__error') as HTMLElement | null;
+  const successEl = document.querySelector('.upload-modal__success') as HTMLElement | null;
+  const submitBtn = document.getElementById('upload-challenge-submit') as HTMLButtonElement | null;
+
+  openBtn?.addEventListener('click', () => dialog?.showModal());
+  closeBtn?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    if (errorEl) errorEl.hidden = true;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (!response.ok) throw new Error('Formspree responded with an error');
+
+      form.hidden = true;
+      successEl?.removeAttribute('hidden');
+      form.reset();
+    } catch {
+      if (errorEl) {
+        errorEl.textContent = 'Something went wrong. Please try again, or email us directly.';
+        errorEl.hidden = false;
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+      }
+    }
+  });
+</script>

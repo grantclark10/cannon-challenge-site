@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import cannon1 from '../assets/images/cannon-1.jpg';
+import cannon2 from '../assets/images/cannon-2.jpg';
+---
+
+<section class="challenge-intro section">
+  <div class="container">
+    <div class="challenge-intro__copy reveal">
+      <h1>The Challenge</h1>
+      <h2>Ride or run</h2>
+      <p class="challenge-intro__stats">16 cannons &ndash; 160km &ndash; 2750m elevation</p>
+      <p>
+        Challenge yourself to ride (or run!) this magical mixed terrain route. Do it in one day or
+        over multi days. Do it solo or take the family. Do it in a relay team. Do it as a challenge
+        to raise money for charity. It's the adventure and story that counts!
+      </p>
+      <p>
+        Complete the challenge, submit your time and win some amazing prizes and gear from East
+        City Cycles and Jack Black Beer! Don't forget to tag @capetowncannonchallenge on Instagram
+        and we'll feature your story!
+      </p>
+    </div>
+    <div class="challenge-intro__images reveal">
+      <Image src={cannon1} alt="A historical cannon along the route" width={500} height={620} loading="lazy" />
+      <Image src={cannon2} alt="A second historical cannon along the route" width={500} height={620} loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .challenge-intro .container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .challenge-intro__copy h2 {
+    margin-top: 0.5rem;
+  }
+
+  .challenge-intro__stats {
+    font-family: var(--font-title);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 1rem 0 1.5rem;
+    max-width: none;
+  }
+
+  .challenge-intro__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .challenge-intro__images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+  }
+
+  @media (max-width: 800px) {
+    .challenge-intro .container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import SponsorStrip from '../../components/SponsorStrip.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Contact — Cape Town Cannon Challenge"
+  description="Contact the Cape Town Cannon Challenge. Contact details for the Cape Town Cannon Challenge."
+>
+  <Nav />
+  <main id="main">
+    <section class="contact section">
+      <div class="container contact__inner">
+        <div class="contact__intro reveal">
+          <h1>Contact Us</h1>
+          <h2>Say Hello</h2>
+          <p class="lede">
+            <a href="mailto:hello@cannonchallenge.capetown">hello@cannonchallenge.capetown</a>
+          </p>
+        </div>
+
+        <div class="reveal">
+          <ContactForm />
+        </div>
+      </div>
+    </section>
+
+    <SponsorStrip />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .contact__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .contact__intro h2 {
+    color: var(--color-accent);
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .contact__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
