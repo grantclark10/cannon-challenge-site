@@ -14,111 +14,168 @@ function imageFor(filename: string) {
 ---
 
 <section class="cannon-list section">
-  <div class="container">
-    <h2 class="reveal">The Cannons</h2>
+  <h2 class="reveal">The Cannons</h2>
 
-    <ol class="cannon-list__grid">
-      {
-        cannons.map((cannon) => (
-          <li class="cannon-card reveal">
-            <div class="cannon-card__image-wrap">
-              <Image
-                src={imageFor(cannon.image)}
-                alt={cannon.name}
-                width={640}
-                height={480}
-                loading="lazy"
-                class="cannon-card__image"
-              />
-              <span class="cannon-card__number">{cannon.order}</span>
-            </div>
+  <ol class="cannon-list__rows">
+    {
+      cannons.map((cannon) => (
+        <li class:list={['cannon-row', 'reveal', { 'cannon-row--reverse': cannon.order % 2 === 0 }]}>
+          <div class="cannon-row__media">
+            <Image
+              src={imageFor(cannon.image)}
+              alt={cannon.name}
+              width={800}
+              height={600}
+              loading="lazy"
+              class="cannon-row__image"
+            />
+            <span class="cannon-row__number">{cannon.order}</span>
+          </div>
 
-            <div class="cannon-card__body">
-              <h5>{cannon.name}</h5>
-              <ul class="tag-list">
-                <li class="tag">{cannon.terrain}</li>
-              </ul>
-              <p>{cannon.description}</p>
+          <div class="cannon-row__panel">
+            <h3>{cannon.name}</h3>
+            <p class="cannon-row__meta">
+              <strong>What3words location:</strong>{' '}
               <a
                 href={`https://what3words.com/${cannon.what3words.replace(/^\/+/, '')}`}
                 target="_blank"
                 rel="noopener"
-                class="cannon-card__w3w"
               >
                 {cannon.what3words}
               </a>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-  </div>
+            </p>
+            <p class="cannon-row__meta">
+              <strong>Terrain:</strong> {cannon.terrain}
+            </p>
+            <p class="cannon-row__desc">{cannon.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
 </section>
 
 <style>
   .cannon-list h2 {
+    text-align: center;
     margin-bottom: 2.5rem;
+    padding-inline: var(--section-padding-x);
   }
 
-  .cannon-list__grid {
+  .cannon-list__rows {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.75rem;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
-  .cannon-card {
-    border: 1px solid rgba(0, 0, 0, 0.08);
+  .cannon-row {
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  .cannon-card__image-wrap {
+  .cannon-row--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .cannon-row__media {
     position: relative;
+    flex: 1 1 480px;
+    min-width: 320px;
   }
 
-  .cannon-card :global(.cannon-card__image) {
+  .cannon-row :global(.cannon-row__image) {
     width: 100%;
+    height: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    filter: grayscale(1);
   }
 
-  .cannon-card__number {
+  .cannon-row__number {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
+    bottom: 0;
+    right: 0;
+    transform: translate(30%, 30%);
+    width: clamp(64px, 7vw, 92px);
+    height: clamp(64px, 7vw, 92px);
+    border-radius: 50%;
     background: var(--color-accent);
     color: #fff;
-    font-family: var(--font-title);
-    font-weight: 800;
-    font-size: 0.85rem;
-    width: 2rem;
-    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-pill);
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    box-shadow: 0 0 0 6px var(--color-bg);
   }
 
-  .cannon-card__body {
-    padding: 1.25rem;
+  .cannon-row--reverse .cannon-row__number {
+    right: auto;
+    left: 0;
+    transform: translate(-30%, 30%);
   }
 
-  .cannon-card__body h5 {
-    margin-bottom: 0.6rem;
+  .cannon-row__panel {
+    flex: 1 1 480px;
+    min-width: 320px;
+    background: var(--color-ink);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2.5rem, 5vw, 4.5rem);
   }
 
-  .cannon-card__body p {
-    font-size: 0.92rem;
-    color: #333;
+  .cannon-row__panel h3 {
+    color: #fff;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: clamp(1.3rem, 1.6vw + 0.9rem, 1.8rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .cannon-row__meta {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.5rem;
     max-width: none;
   }
 
-  .cannon-card__w3w {
-    display: inline-block;
-    font-family: var(--font-title);
+  .cannon-row__meta strong {
+    color: var(--color-accent);
     font-weight: 700;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
+  }
+
+  .cannon-row__meta a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cannon-row__desc {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 42rem;
+  }
+
+  @media (max-width: 700px) {
+    .cannon-row,
+    .cannon-row--reverse {
+      flex-direction: column;
+    }
+
+    .cannon-row--reverse .cannon-row__number {
+      right: 0;
+      left: auto;
+      transform: translate(30%, 30%);
+    }
+
+    .cannon-row__panel {
+      padding: 2.5rem var(--section-padding-x);
+    }
   }
 </style>
