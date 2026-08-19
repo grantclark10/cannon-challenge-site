@@ -34,7 +34,7 @@
 
   <p class="contact-form__error" role="alert" hidden></p>
 
-  <button type="submit" class="btn" id="contact-submit">Send Message</button>
+  <button type="submit" class="btn" id="contact-submit">Submit</button>
 </form>
 
 <div class="contact-form__success" role="status" hidden>
@@ -171,7 +171,7 @@
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
+      submitBtn.textContent = 'Submitting…';
     }
 
     try {
@@ -194,7 +194,7 @@
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = 'Submit';
       }
     }
   });
