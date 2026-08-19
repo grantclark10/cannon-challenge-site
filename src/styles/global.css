@@ -4,7 +4,7 @@
    (post-6.css --e-global-color-* / --e-global-typography-*): black/white
    with a single red accent. Titles (h1-h5) use A Love of Thunder, all
    caps; UI chrome (buttons, nav, labels) stays on Work Sans; body copy
-   on Fira Sans. Don't add new colours here; pull from the tokens below.
+   on Noto Serif. Don't add new colours here; pull from the tokens below.
    ========================================================================== */
 
 :root {
@@ -17,7 +17,7 @@
   --color-accent: #d82727; /* BOOM red — buttons, links, key CTAs */
 
   --font-title: 'Work Sans', system-ui, sans-serif; /* buttons, nav, labels — not headings */
-  --font-body: 'Fira Sans', system-ui, sans-serif;
+  --font-body: 'Noto Serif', Georgia, serif;
   --font-display: 'A Love of Thunder', var(--font-title); /* all h1-h5 titles */
 
   --max-width: 1280px;
