@@ -1,19 +1,23 @@
 ---
 // "Proudly partnering with" — appears near the bottom of every page, just
-// above the footer, same as the original site.
-import { Image } from 'astro:assets';
+// above the footer, same as the original site. Red band with a topographic
+// contour-line texture blended over it, matching the original brand.
+import { Image, getImage } from 'astro:assets';
 import { sponsors } from '../data/sponsors';
 
 import eastCityCyclesLogo from '../assets/images/east-city-cycles-logo.png';
 import jackBlackBrewingLogo from '../assets/images/jack-black-brewing-logo.png';
+import contourTexture from '../assets/images/contour-texture.png';
 
 const logos: Record<string, ImageMetadata> = {
   'east-city-cycles-logo.png': eastCityCyclesLogo,
   'jack-black-brewing-logo.png': jackBlackBrewingLogo,
 };
+
+const contourImage = await getImage({ src: contourTexture, width: 1600, format: 'webp' });
 ---
 
-<section class="sponsor-strip">
+<section class="sponsor-strip" style={`background-image: url(${contourImage.src})`}>
   <div class="container sponsor-strip__inner">
     <h3>Proudly partnering with</h3>
     <ul class="sponsor-strip__logos">
@@ -31,7 +35,10 @@ const logos: Record<string, ImageMetadata> = {
 <style>
   .sponsor-strip {
     padding-block: clamp(2.5rem, 5vw, 4rem);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: var(--color-accent);
+    background-repeat: repeat;
+    background-size: 700px auto;
+    background-blend-mode: soft-light;
   }
 
   .sponsor-strip__inner {
@@ -39,7 +46,7 @@ const logos: Record<string, ImageMetadata> = {
   }
 
   .sponsor-strip h3 {
-    color: var(--color-secondary);
+    color: #fff;
     margin-bottom: 1.5rem;
   }
 
@@ -57,13 +64,5 @@ const logos: Record<string, ImageMetadata> = {
   .sponsor-strip__logos img {
     max-height: 60px;
     width: auto;
-    filter: grayscale(1);
-    opacity: 0.7;
-    transition: filter 0.2s ease, opacity 0.2s ease;
-  }
-
-  .sponsor-strip__logos img:hover {
-    filter: grayscale(0);
-    opacity: 1;
   }
 </style>

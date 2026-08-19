@@ -13,13 +13,13 @@
 
   <form action="https://formspree.io/f/mwlewrjl" method="POST" id="newsletter-form" class="newsletter__form" novalidate>
     <div class="newsletter__field-row">
-      <label for="newsletter-name" class="visually-hidden">Name</label>
-      <input type="text" name="name" id="newsletter-name" placeholder="Name" required autocomplete="name" />
+      <label for="newsletter-name" class="visually-hidden">First Name</label>
+      <input type="text" name="name" id="newsletter-name" placeholder="First Name" required autocomplete="given-name" />
 
       <label for="newsletter-email" class="visually-hidden">Email address</label>
       <input type="email" name="email" id="newsletter-email" placeholder="Email" required autocomplete="email" />
 
-      <button type="submit" class="btn newsletter__submit" id="newsletter-submit">Sign Up</button>
+      <button type="submit" class="btn newsletter__submit" id="newsletter-submit">Submit</button>
     </div>
 
     <input type="hidden" name="_subject" value="New Cannon Challenge newsletter sign-up" />
@@ -137,7 +137,7 @@
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Signing up…';
+      submitBtn.textContent = 'Submitting…';
     }
 
     try {
@@ -160,7 +160,7 @@
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Sign Up';
+        submitBtn.textContent = 'Submit';
       }
     }
   });

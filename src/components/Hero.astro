@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/images/hero-cycle-race.jpg';
+import logo from '../assets/logo/ctcc-logo-white.png';
 ---
 
 <section class="hero" id="top">
@@ -16,27 +17,24 @@ import heroImage from '../assets/images/hero-cycle-race.jpg';
   <div class="hero__overlay" aria-hidden="true"></div>
 
   <div class="container hero__content">
+    <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="hero__logo" />
     <h1>Ride or run all of the historical cannons around Cape Town. <span class="hero__boom">Boom!</span></h1>
     <p class="hero__lede">
       The Cape Town Cannon Challenge is a mixed terrain route which links many of the historical
       cannons dotted around the Cape peninsula.
     </p>
     <p class="hero__stats">16 cannons &ndash; 160km &ndash; 2750m elevation</p>
-    <div class="hero__ctas">
-      <a href="/route/" class="btn">See the Route</a>
-      <a href="/challenge/" class="btn btn--outline-light">The Challenge</a>
-    </div>
   </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    min-height: 92vh;
     display: flex;
     align-items: center;
     color: #fff;
     overflow: hidden;
+    padding-block: clamp(3.5rem, 10vw, 6rem);
   }
 
   .hero :global(.hero__image) {
@@ -55,8 +53,18 @@ import heroImage from '../assets/images/hero-cycle-race.jpg';
 
   .hero__content {
     position: relative;
-    padding-block: clamp(3rem, 8vw, 5rem);
-    max-width: 60rem;
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero :global(.hero__logo) {
+    width: clamp(140px, 16vw, 200px);
+    height: auto;
+    margin-bottom: 1.75rem;
   }
 
   .hero__boom {
@@ -67,6 +75,7 @@ import heroImage from '../assets/images/hero-cycle-race.jpg';
     font-size: clamp(1.05rem, 1.2vw + 0.9rem, 1.35rem);
     max-width: 42ch;
     margin-top: 1.5rem;
+    margin-inline: auto;
     color: rgba(255, 255, 255, 0.92);
   }
 
@@ -75,14 +84,8 @@ import heroImage from '../assets/images/hero-cycle-race.jpg';
     font-weight: 700;
     letter-spacing: 0.04em;
     font-size: clamp(1rem, 1vw + 0.85rem, 1.2rem);
-    color: var(--color-accent);
+    color: #fff;
     max-width: none;
-  }
-
-  .hero__ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 0.75rem;
   }
 </style>

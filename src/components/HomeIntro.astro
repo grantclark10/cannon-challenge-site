@@ -7,8 +7,8 @@ import cannon2 from '../assets/images/cannon-2.jpg';
 <section class="home-intro section">
   <div class="container home-intro__inner">
     <div class="home-intro__images reveal">
-      <Image src={cannon1} alt="One of the historical cannons on the Cape Town Cannon Challenge route" width={500} height={620} loading="lazy" />
-      <Image src={cannon2} alt="A second historical cannon along the route" width={500} height={620} loading="lazy" />
+      <Image src={cannon1} alt="One of the historical cannons on the Cape Town Cannon Challenge route" width={300} height={180} loading="lazy" />
+      <Image src={cannon2} alt="A second historical cannon along the route" width={300} height={180} loading="lazy" />
     </div>
 
     <div class="home-intro__copy reveal">
@@ -22,51 +22,64 @@ import cannon2 from '../assets/images/cannon-2.jpg';
         City Cycles and Jack Black Beer! Don't forget to tag @ctcannonchallenge on Instagram and
         we'll feature your story!
       </p>
-      <a href="/route/" class="btn btn--outline">Download the Route</a>
+      <a href="/cape-town-cannon-challenge.gpx" download class="btn">Download the Route</a>
+      <a href="/route/" class="home-intro__learn-more">Learn More</a>
     </div>
   </div>
 </section>
 
 <style>
   .home-intro__inner {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .home-intro__images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin-bottom: 2.5rem;
   }
 
   .home-intro__images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 4 / 5;
+    width: clamp(140px, 22vw, 220px);
+    height: auto;
+    object-fit: contain;
   }
 
-  .home-intro__images :global(img):first-child {
-    margin-top: 2.5rem;
+  .home-intro__copy {
+    max-width: 42rem;
   }
 
   .home-intro__copy h2 {
     margin-bottom: 1.5rem;
   }
 
-  .home-intro__copy .btn {
-    margin-top: 0.5rem;
+  .home-intro__copy p {
+    margin-inline: auto;
   }
 
-  @media (max-width: 800px) {
-    .home-intro__inner {
-      grid-template-columns: 1fr;
-    }
+  .home-intro__copy .btn {
+    margin-top: 1rem;
+  }
 
-    .home-intro__images :global(img):first-child {
-      margin-top: 0;
-    }
+  .home-intro__learn-more {
+    display: block;
+    margin-top: 1.25rem;
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .home-intro__learn-more:hover,
+  .home-intro__learn-more:focus-visible {
+    color: var(--color-accent);
   }
 </style>

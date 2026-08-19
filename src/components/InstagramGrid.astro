@@ -1,0 +1,74 @@
+---
+// The original site embedded a live Instagram feed plugin (Spotlight)
+// showing the 5 most recent @capetowncannonchallenge posts. That plugin's
+// cached post images weren't part of the WordPress backup, and a static
+// rebuild can't reproduce a live feed without wiring up the Instagram API
+// — so this is a styled grid of real site photography, not live posts.
+// TODO: swap for a live/curated grid once Instagram API access (or a
+// manually curated set of real post images) is available.
+import { Image } from 'astro:assets';
+import cannon1 from '../assets/images/cannon-1.jpg';
+import cannon2 from '../assets/images/cannon-2.jpg';
+import cannonsCollage from '../assets/images/cannons-collage.jpg';
+import contactHero from '../assets/images/contact-hero.jpg';
+import cyclists from '../assets/images/cyclists-cape-town.jpg';
+
+const photos = [cannon1, cannon2, cannonsCollage, contactHero, cyclists];
+---
+
+<section class="instagram-grid">
+  <div class="instagram-grid__row reveal">
+    {
+      photos.map((photo) => (
+        <a
+          href="https://www.instagram.com/capetowncannonchallenge/"
+          target="_blank"
+          rel="noopener"
+          class="instagram-grid__tile"
+        >
+          <Image src={photo} alt="Cape Town Cannon Challenge on Instagram" width={300} height={300} loading="lazy" />
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .instagram-grid {
+    background: var(--color-surface);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .instagram-grid__row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--section-padding-x);
+  }
+
+  .instagram-grid__tile {
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .instagram-grid__tile :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .instagram-grid__tile:hover :global(img),
+  .instagram-grid__tile:focus-visible :global(img) {
+    transform: scale(1.06);
+  }
+
+  @media (max-width: 640px) {
+    .instagram-grid__row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
