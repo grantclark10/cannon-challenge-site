@@ -2,9 +2,9 @@
    Cape Town Cannon Challenge — global styles
    Brand tokens pulled from the original Elementor kit's compiled CSS
    (post-6.css --e-global-color-* / --e-global-typography-*): black/white
-   with a single red accent. Titles (h1-h5) use Rubik Dirt, all caps; UI
-   chrome (buttons, nav, labels) stays on Work Sans; body copy on Roboto.
-   Don't add new colours here; pull from the tokens below.
+   with a single red accent. Titles (h1-h5) use A Love of Thunder, all
+   caps; UI chrome (buttons, nav, labels) stays on Work Sans; body copy
+   on Roboto. Don't add new colours here; pull from the tokens below.
    ========================================================================== */
 
 :root {
@@ -18,7 +18,7 @@
 
   --font-title: 'Work Sans', system-ui, sans-serif; /* buttons, nav, labels — not headings */
   --font-body: 'Roboto', system-ui, sans-serif;
-  --font-display: 'Rubik Dirt', var(--font-title); /* all h1-h5 titles */
+  --font-display: 'A Love of Thunder', var(--font-title); /* all h1-h5 titles */
 
   --max-width: 1280px;
   --section-padding-y: clamp(4rem, 8vw, 7rem);
@@ -28,6 +28,14 @@
   --radius-pill: 999px;
 
   --nav-height: 84px;
+}
+
+@font-face {
+  font-family: 'A Love of Thunder';
+  src: url('/fonts/a-love-of-thunder-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -83,7 +91,7 @@ h3,
 h4,
 h5 {
   font-family: var(--font-display);
-  font-weight: 400; /* Rubik Dirt only ships a Regular weight — avoid faux-bold */
+  font-weight: 400; /* A Love of Thunder only ships a Regular weight — avoid faux-bold */
   text-transform: uppercase;
   line-height: 1.1;
   margin: 0;
