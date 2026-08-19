@@ -1,70 +1,100 @@
 ---
 import { Image } from 'astro:assets';
-import cannon1 from '../assets/images/cannon-1.jpg';
-import cannon2 from '../assets/images/cannon-2.jpg';
+import heroImage from '../assets/images/challenge-hero.jpg';
+import logo from '../assets/logo/ctcc-logo-white.png';
 ---
 
-<section class="challenge-intro section">
-  <div class="container">
-    <div class="challenge-intro__copy reveal">
-      <h1>The Challenge</h1>
-      <h2>Ride or run</h2>
-      <p class="challenge-intro__stats">16 cannons &ndash; 160km &ndash; 2750m elevation</p>
-      <p>
-        Challenge yourself to ride (or run!) this magical mixed terrain route. Do it in one day or
-        over multi days. Do it solo or take the family. Do it in a relay team. Do it as a challenge
-        to raise money for charity. It's the adventure and story that counts!
-      </p>
-      <p>
-        Complete the challenge, submit your time and win some amazing prizes and gear from East
-        City Cycles and Jack Black Beer! Don't forget to tag @capetowncannonchallenge on Instagram
-        and we'll feature your story!
-      </p>
-    </div>
-    <div class="challenge-intro__images reveal">
-      <Image src={cannon1} alt="A historical cannon along the route" width={500} height={620} loading="lazy" />
-      <Image src={cannon2} alt="A second historical cannon along the route" width={500} height={620} loading="lazy" />
-    </div>
+<section class="challenge-hero">
+  <Image
+    src={heroImage}
+    alt="Cyclists on the Cape Town Cannon Challenge route"
+    width={1920}
+    height={1280}
+    loading="eager"
+    fetchpriority="high"
+    class="challenge-hero__image"
+  />
+  <div class="challenge-hero__overlay" aria-hidden="true"></div>
+
+  <div class="container challenge-hero__content">
+    <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="challenge-hero__logo" />
+    <h1>The Challenge</h1>
+  </div>
+</section>
+
+<section class="challenge-copy section">
+  <div class="container challenge-copy__inner reveal">
+    <h2>Ride or Run</h2>
+    <p class="challenge-copy__stats">16 cannons &ndash; 160km &ndash; 2750m elevation</p>
+    <p class="lede">
+      Tag all of the historical cannons on this incredibly beautiful multi-terrain route around
+      Cape Town. Do it in one day or over multi days. Do it solo or take the family. Do it in a
+      relay team. Ride it or run it. Do it as a challenge to raise money for charity. It's the
+      adventure and story that counts!
+    </p>
+    <p class="lede">
+      Complete the challenge, submit your time and win some amazing prizes and gear from East
+      City Cycles and Jack Black Beer! Don't forget to tag @capetowncannonchallenge on Instagram
+      and we'll feature your story!
+    </p>
   </div>
 </section>
 
 <style>
-  .challenge-intro .container {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: clamp(2rem, 5vw, 4rem);
+  .challenge-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 10vw, 6rem);
+  }
+
+  .challenge-hero :global(.challenge-hero__image) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .challenge-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.75) 100%);
+  }
+
+  .challenge-hero__content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
-  .challenge-intro__copy h2 {
-    margin-top: 0.5rem;
+  .challenge-hero :global(.challenge-hero__logo) {
+    width: clamp(140px, 16vw, 200px);
+    height: auto;
+    margin-bottom: 1.75rem;
   }
 
-  .challenge-intro__stats {
+  .challenge-copy__inner {
+    max-width: 60rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .challenge-copy__stats {
     font-family: var(--font-title);
     font-weight: 700;
     text-transform: uppercase;
     color: var(--color-accent);
-    margin: 1rem 0 1.5rem;
+    margin-bottom: 2rem;
     max-width: none;
   }
 
-  .challenge-intro__images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .challenge-intro__images img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 4 / 5;
-  }
-
-  @media (max-width: 800px) {
-    .challenge-intro .container {
-      grid-template-columns: 1fr;
-    }
+  .challenge-copy .lede {
+    margin-inline: auto;
+    margin-bottom: 1.25rem;
   }
 </style>

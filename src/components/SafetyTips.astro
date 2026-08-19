@@ -2,44 +2,55 @@
 const tips = [
   'Download the What3Words app to easily locate each cannon on the route.',
   'Ideally, ride/run with a partner and let someone know your route and expected finish time.',
-  'Save the Wilderness Search and Rescue Number in your phone – 021 937 0300.',
+  'Save the Wilderness Search and Rescue Number in your phone – 021 937 0300',
   'Use a tracking app on your phone or carry a tracking device like a Spot.',
-  'Most of the time you will be on public roads and have mobile phone reception, but there are sections where reception might be limited. Please keep in mind where possible exit points are when you head onto the mountain sections.',
+  'Most of the time you will be on public roads and have mobile phone reception, but there are sections where reception might be limited.',
+  'Please keep in mind where possible exit points are when you head onto the mountain sections.',
   'Please adhere to the South African National Parks rules and regulations when doing the Cape Town Cannon Challenge.',
   'Please note that the Cannon Challenge or any of its sponsors and/or associates cannot be held liable for your personal safety during the challenge and your participation in the challenge is entirely at your own risk.',
 ];
 ---
 
-<section class="safety-tips section section--surface">
+<section class="safety-tips section">
   <div class="container">
     <h2 class="reveal">Safety Tips</h2>
-    <p class="lede reveal">
-      Whenever you are riding or running around the Cape Peninsula, please always be aware of your
-      surroundings and know that some areas of the peninsula may need extra caution and vigilance
-      when riding or running through them.
-    </p>
-    <ul class="safety-tips__list reveal">
-      {tips.map((tip) => <li>{tip}</li>)}
-    </ul>
+    <div class="safety-tips__box reveal">
+      <p class="safety-tips__intro">
+        Whenever you are riding or running around the Cape Peninsula, please always be aware of
+        your surroundings and know that some areas of the peninsula may need extra caution and
+        vigilance when riding or running through them.
+      </p>
+      <ul class="safety-tips__list">
+        {tips.map((tip) => <li>{tip}</li>)}
+      </ul>
+    </div>
   </div>
 </section>
 
 <style>
   .safety-tips h2 {
-    margin-bottom: 1.25rem;
+    text-align: center;
+    margin-bottom: 1.75rem;
   }
 
-  .safety-tips .lede {
-    max-width: 60rem;
-    margin-bottom: 2rem;
+  .safety-tips__box {
+    background: #000;
+    color: #fff;
+    padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.75rem, 6vw, 4.25rem);
+  }
+
+  .safety-tips__intro {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: none;
+    margin-bottom: 1.25rem;
   }
 
   .safety-tips__list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-width: 60rem;
-    padding-left: 1.5rem;
+    padding-left: clamp(1rem, 3vw, 1.5rem);
+    margin: 0;
   }
 
   .safety-tips__list li {
