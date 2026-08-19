@@ -19,7 +19,7 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
         <a href="https://www.komoot.com/tour/1000368153" target="_blank" rel="noopener" class="btn">
           View on Komoot
         </a>
-        <a href="/cape-town-cannon-challenge.gpx" download class="btn btn--outline">
+        <a href="/cape-town-cannon-challenge.gpx" download class="btn btn--outline-light">
           Download GPX
         </a>
       </div>
@@ -38,6 +38,15 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
 </section>
 
 <style>
+  .route-intro {
+    background: #000;
+    color: #fff;
+  }
+
+  .route-intro h1 {
+    color: #fff;
+  }
+
   .route-intro__copy {
     max-width: 60rem;
     margin-inline: auto;
@@ -46,6 +55,7 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
   }
 
   .route-intro__copy .lede {
+    color: rgba(255, 255, 255, 0.9);
     margin-inline: auto;
   }
 
@@ -61,7 +71,7 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
     font-family: var(--font-title);
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: #fff;
     margin-top: 1.5rem;
     max-width: none;
   }
@@ -69,6 +79,5 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
   .route-intro :global(.route-intro__map) {
     width: 100%;
     height: auto;
-    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 </style>
