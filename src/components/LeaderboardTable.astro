@@ -47,17 +47,19 @@ function formatTime(entry: (typeof wallOfHonour)[number]) {
                     : `${formatDate(entry.dateStart)} – ${formatDate(entry.dateEnd)}`}
                 </td>
                 <td>{formatTime(entry)}</td>
-                <td class="leaderboard__links">
-                  {entry.stravaUrl && (
-                    <a href={entry.stravaUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Strava activity`}>
-                      Strava
-                    </a>
-                  )}
-                  {entry.instagramUrl && (
-                    <a href={entry.instagramUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Instagram profile`}>
-                      Instagram
-                    </a>
-                  )}
+                <td>
+                  <span class="leaderboard__links">
+                    {entry.stravaUrl && (
+                      <a href={entry.stravaUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Strava activity`}>
+                        Strava
+                      </a>
+                    )}
+                    {entry.instagramUrl && (
+                      <a href={entry.instagramUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Instagram profile`}>
+                        Instagram
+                      </a>
+                    )}
+                  </span>
                 </td>
               </tr>
             ))
@@ -116,7 +118,7 @@ function formatTime(entry: (typeof wallOfHonour)[number]) {
   }
 
   .leaderboard__links {
-    display: flex;
+    display: inline-flex;
     gap: 0.75rem;
   }
 
