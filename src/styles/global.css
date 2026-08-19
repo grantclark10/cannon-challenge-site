@@ -2,8 +2,9 @@
    Cape Town Cannon Challenge — global styles
    Brand tokens pulled from the original Elementor kit's compiled CSS
    (post-6.css --e-global-color-* / --e-global-typography-*): black/white
-   with a single red accent, bold uppercase Work Sans headings over Roboto
-   body copy. Don't add new colours here; pull from the tokens below.
+   with a single red accent. Titles (h1-h5) use Rubik Dirt, all caps; UI
+   chrome (buttons, nav, labels) stays on Work Sans; body copy on Roboto.
+   Don't add new colours here; pull from the tokens below.
    ========================================================================== */
 
 :root {
@@ -15,9 +16,9 @@
   --color-secondary: #c4c4c4; /* muted borders, secondary text */
   --color-accent: #d82727; /* BOOM red — buttons, links, key CTAs */
 
-  --font-title: 'Work Sans', system-ui, sans-serif;
+  --font-title: 'Work Sans', system-ui, sans-serif; /* buttons, nav, labels — not headings */
   --font-body: 'Roboto', system-ui, sans-serif;
-  --font-display: 'Vintage Crafted Sans', var(--font-title); /* h1 titles only */
+  --font-display: 'Rubik Dirt', var(--font-title); /* all h1-h5 titles */
 
   --max-width: 1280px;
   --section-padding-y: clamp(4rem, 8vw, 7rem);
@@ -27,14 +28,6 @@
   --radius-pill: 999px;
 
   --nav-height: 84px;
-}
-
-@font-face {
-  font-family: 'Vintage Crafted Sans';
-  src: url('/fonts/vintage-crafted-sans-regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
 }
 
 *,
@@ -89,18 +82,16 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: var(--font-title);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 400; /* Rubik Dirt only ships a Regular weight — avoid faux-bold */
+  text-transform: uppercase;
   line-height: 1.1;
   margin: 0;
   text-wrap: balance;
 }
 
 h1 {
-  font-family: var(--font-display);
-  font-weight: 400; /* Vintage Crafted Sans only ships a Regular weight — avoid faux-bold */
   font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem);
-  text-transform: uppercase;
 }
 
 h2 {
@@ -109,19 +100,16 @@ h2 {
 
 h3 {
   font-size: clamp(1rem, 1vw + 0.85rem, 1.4rem);
-  text-transform: uppercase;
   letter-spacing: 0.14em;
 }
 
 h4 {
   font-size: 0.95rem;
-  text-transform: uppercase;
   letter-spacing: 0.12em;
 }
 
 h5 {
   font-size: 1.35rem;
-  font-weight: 600;
 }
 
 p {
