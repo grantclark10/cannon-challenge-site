@@ -1,11 +1,22 @@
 ---
 import { Image } from 'astro:assets';
 import routeMap from '../assets/images/route-map-desktop.jpg';
+import logo from '../assets/logo/ctcc-logo-white.png';
+
+const anchorLinks = [
+  { href: '#route', label: 'The Route' },
+  { href: '#profile', label: 'The Profile' },
+  { href: '#cannons', label: 'The Cannons' },
+];
 ---
 
-<section class="route-intro section">
+<section class="route-intro section" id="route">
   <div class="container">
     <div class="route-intro__copy reveal">
+      <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="route-intro__logo" />
+      <nav class="route-intro__anchors" aria-label="Route page sections">
+        {anchorLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
       <h1>The Route</h1>
       <p class="lede">
         There are sixteen historical cannons to link up in order. If riding the route, you'll need
@@ -52,6 +63,34 @@ import routeMap from '../assets/images/route-map-desktop.jpg';
     margin-inline: auto;
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
     text-align: center;
+  }
+
+  .route-intro :global(.route-intro__logo) {
+    width: clamp(140px, 16vw, 200px);
+    height: auto;
+    margin-bottom: 1.75rem;
+  }
+
+  .route-intro__anchors {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .route-intro__anchors a {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .route-intro__anchors a:hover,
+  .route-intro__anchors a:focus-visible {
+    color: #fff;
   }
 
   .route-intro__copy .lede {
