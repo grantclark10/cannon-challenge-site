@@ -208,14 +208,27 @@ const links = [
     text-align: center;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     .footer__grid {
-      justify-content: center;
+      flex-direction: column;
+      align-items: stretch;
       text-align: center;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .footer :global(.footer__logo) {
       margin-inline: auto;
+    }
+
+    .footer__nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .footer__nav ul {
@@ -224,6 +237,7 @@ const links = [
 
     .footer__socials {
       justify-content: center;
+      margin-top: clamp(2rem, 4vw, 2.5rem);
     }
   }
 </style>
