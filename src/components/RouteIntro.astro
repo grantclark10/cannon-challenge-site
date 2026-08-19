@@ -19,10 +19,13 @@ const anchorLinks = [
       <p class="lede">
         There are sixteen historical cannons to link up in order. If riding the route, you'll need
         to choose your bike carefully as there is a mixture of terrain, including road, cobbles,
-        gravel and even some single-track. The majority of the route is paved, but just as it
-        starts getting tough towards the end of the route, you'll hit the gravel (and some
-        single-track) and start to make your way on the trails around the mountain before dropping
-        back down to your starting point at East City Cycles.
+        gravel and even some single-track.
+      </p>
+      <p class="lede">
+        The majority of the route is paved, but just as it starts getting tough towards the end of
+        the route, you'll hit the gravel (and some single-track) and start to make your way on the
+        trails around the mountain before dropping back down to your starting point at East City
+        Cycles.
       </p>
       <div class="route-intro__ctas">
         <a href="https://www.komoot.com/tour/1000368153" target="_blank" rel="noopener" class="btn">
@@ -86,9 +89,14 @@ const anchorLinks = [
   }
 
   .route-intro__copy .lede {
+    max-width: 85ch;
     color: rgba(255, 255, 255, 0.9);
     margin-inline: auto;
     margin-top: 1.5rem;
+  }
+
+  .route-intro__copy .lede + .lede {
+    margin-top: 1rem;
   }
 
   .route-intro__ctas {
