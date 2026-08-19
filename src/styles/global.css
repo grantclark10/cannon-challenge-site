@@ -173,7 +173,7 @@ p {
 .lede {
   font-size: 1.15rem;
   color: var(--color-text);
-  max-width: 52ch;
+  max-width: 70ch;
 }
 
 /* Buttons — sharp corners, uppercase, red fill: matches the original
