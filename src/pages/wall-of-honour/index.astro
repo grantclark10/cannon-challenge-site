@@ -7,7 +7,6 @@ import LeaderboardTable from '../../components/LeaderboardTable.astro';
 import SponsorStrip from '../../components/SponsorStrip.astro';
 import Footer from '../../components/Footer.astro';
 import heroImage from '../../assets/images/wall-of-honour-hero.jpg';
-import logo from '../../assets/logo/ctcc-logo-white.png';
 ---
 
 <Layout
@@ -29,7 +28,6 @@ import logo from '../../assets/logo/ctcc-logo-white.png';
       <div class="wall-hero__overlay" aria-hidden="true"></div>
 
       <div class="container wall-hero__content">
-        <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="wall-hero__logo" />
         <h1>Wall of Honour</h1>
       </div>
     </section>
@@ -80,12 +78,6 @@ import logo from '../../assets/logo/ctcc-logo-white.png';
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .wall-hero :global(.wall-hero__logo) {
-    width: clamp(140px, 16vw, 200px);
-    height: auto;
-    margin-bottom: 1.75rem;
   }
 
   .wall-copy {

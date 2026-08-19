@@ -6,7 +6,6 @@ import ContactForm from '../../components/ContactForm.astro';
 import SponsorStrip from '../../components/SponsorStrip.astro';
 import Footer from '../../components/Footer.astro';
 import heroImage from '../../assets/images/contact-hero.jpg';
-import logo from '../../assets/logo/ctcc-logo-white.png';
 ---
 
 <Layout
@@ -28,7 +27,6 @@ import logo from '../../assets/logo/ctcc-logo-white.png';
       <div class="contact-hero__overlay" aria-hidden="true"></div>
 
       <div class="container contact-hero__content">
-        <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="contact-hero__logo" />
         <h1>Contact Us</h1>
       </div>
     </section>
@@ -84,12 +82,6 @@ import logo from '../../assets/logo/ctcc-logo-white.png';
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .contact-hero :global(.contact-hero__logo) {
-    width: clamp(140px, 16vw, 200px);
-    height: auto;
-    margin-bottom: 1.75rem;
   }
 
   .contact {

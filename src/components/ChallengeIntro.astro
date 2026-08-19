@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/images/challenge-hero.jpg';
-import logo from '../assets/logo/ctcc-logo-white.png';
 ---
 
 <section class="challenge-hero">
@@ -17,7 +16,6 @@ import logo from '../assets/logo/ctcc-logo-white.png';
   <div class="challenge-hero__overlay" aria-hidden="true"></div>
 
   <div class="container challenge-hero__content">
-    <Image src={logo} alt="Cape Town Cannon Challenge" width={220} height={116} loading="eager" class="challenge-hero__logo" />
     <h1>The Challenge</h1>
   </div>
 </section>
@@ -70,12 +68,6 @@ import logo from '../assets/logo/ctcc-logo-white.png';
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .challenge-hero :global(.challenge-hero__logo) {
-    width: clamp(140px, 16vw, 200px);
-    height: auto;
-    margin-bottom: 1.75rem;
   }
 
   .challenge-copy {
