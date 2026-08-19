@@ -7,13 +7,13 @@
 
 <button type="button" class="btn" id="upload-challenge-open">Upload Your Challenge</button>
 
-<dialog id="upload-challenge-dialog" class="upload-modal">
+<dialog id="upload-challenge-dialog" class="upload-modal" aria-labelledby="upload-challenge-title">
   <div class="upload-modal__inner">
     <button type="button" class="upload-modal__close" id="upload-challenge-close" aria-label="Close">
       &times;
     </button>
 
-    <h2>Upload Your Challenge</h2>
+    <h2 id="upload-challenge-title">Upload Your Challenge</h2>
     <p class="upload-modal__notice">
       NB: Please upload your Total Elapsed Time for the route, not your Moving Time.
     </p>
@@ -134,8 +134,14 @@
 
   .upload-modal__close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
     background: none;
     border: none;
     font-size: 1.75rem;
@@ -267,6 +273,11 @@
   closeBtn?.addEventListener('click', () => dialog?.close());
   dialog?.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
+  });
+  // Defensive focus restoration in case a browser doesn't return focus to
+  // the invoking button automatically when the dialog closes.
+  dialog?.addEventListener('close', () => {
+    if (openBtn instanceof HTMLElement) openBtn.focus();
   });
 
   form?.addEventListener('submit', async (event) => {

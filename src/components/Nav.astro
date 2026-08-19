@@ -77,6 +77,10 @@ const isActive = (href: string) =>
 
   .nav__toggle {
     display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     background: none;
     border: none;
     cursor: pointer;
@@ -154,7 +158,7 @@ const isActive = (href: string) =>
   .nav__links a:focus-visible,
   .nav__links a[aria-current='page'] {
     opacity: 1;
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
   }
 
   @media (max-width: 900px) {
@@ -195,16 +199,39 @@ const isActive = (href: string) =>
 <script>
   const toggle = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
+  const mobileQuery = window.matchMedia('(max-width: 900px)');
+
+  // Below the mobile breakpoint, the closed menu panel sits translated
+  // off-screen but stays in the DOM — without `inert` a keyboard user
+  // tabbing through the page would still land on its (invisible) links.
+  function syncInert() {
+    if (!links) return;
+    links.inert = mobileQuery.matches && !links.classList.contains('is-open');
+  }
+
+  function closeMenu() {
+    links?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    syncInert();
+  }
+
+  syncInert();
+  mobileQuery.addEventListener('change', syncInert);
 
   toggle?.addEventListener('click', () => {
     const isOpen = links?.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    syncInert();
   });
 
   links?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      links.classList.remove('is-open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      toggle.focus();
+    }
   });
 </script>

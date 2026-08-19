@@ -22,6 +22,10 @@ function formatTime(entry: (typeof wallOfHonour)[number]) {
 
     <div class="leaderboard__table-wrap reveal">
       <table class="leaderboard__table">
+        <caption class="visually-hidden">
+          Wall of Honour — riders who have completed the Cape Town Cannon Challenge, with their
+          finish date, time, and links to their Strava activity and Instagram profile.
+        </caption>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -38,8 +42,17 @@ function formatTime(entry: (typeof wallOfHonour)[number]) {
                 <td>{entry.rank}</td>
                 <td>
                   {entry.name}
-                  {entry.isFemale && <span class="tag" title="Female category">F</span>}
-                  {entry.isRecordHolder && <span title="Course record holder"> 👑</span>}
+                  {entry.isFemale && (
+                    <span class="tag" title="Female category" aria-label="Female category">
+                      F
+                    </span>
+                  )}
+                  {entry.isRecordHolder && (
+                    <span title="Course record holder" aria-label="Course record holder" role="img">
+                      {' '}
+                      👑
+                    </span>
+                  )}
                 </td>
                 <td>
                   {entry.dateStart === entry.dateEnd
@@ -50,12 +63,12 @@ function formatTime(entry: (typeof wallOfHonour)[number]) {
                 <td>
                   <span class="leaderboard__links">
                     {entry.stravaUrl && (
-                      <a href={entry.stravaUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Strava activity`}>
+                      <a href={entry.stravaUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Strava activity (opens in new tab)`}>
                         Strava
                       </a>
                     )}
                     {entry.instagramUrl && (
-                      <a href={entry.instagramUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Instagram profile`}>
+                      <a href={entry.instagramUrl} target="_blank" rel="noopener" aria-label={`${entry.name}'s Instagram profile (opens in new tab)`}>
                         Instagram
                       </a>
                     )}

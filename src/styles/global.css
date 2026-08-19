@@ -13,8 +13,10 @@
   --color-ink: #1a1a1a; /* near-black — dark section backgrounds */
   --color-text: #000000; /* body copy & headings */
   --color-primary: #000000; /* primary UI colour (nav, borders) */
-  --color-secondary: #c4c4c4; /* muted borders, secondary text */
-  --color-accent: #d82727; /* BOOM red — buttons, links, key CTAs */
+  --color-secondary: #8a8a8a; /* muted borders / UI outlines — 3:1 min on white per WCAG 1.4.11 */
+  --color-muted: #595959; /* muted body text — 4.5:1+ on white/surface per WCAG 1.4.3 */
+  --color-accent: #d82727; /* BOOM red — buttons, links, key CTAs (4.5:1+ on white/surface) */
+  --color-accent-on-dark: #e05252; /* accent text on black/ink backgrounds — 4.5:1+ on both #000 and #1a1a1a */
 
   --font-title: 'Work Sans', system-ui, sans-serif; /* buttons, nav, labels — not headings */
   --font-body: 'Noto Serif', Georgia, serif;

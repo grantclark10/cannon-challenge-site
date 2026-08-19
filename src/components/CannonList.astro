@@ -44,6 +44,7 @@ function imageFor(filename: string) {
                 rel="noopener"
               >
                 {cannon.what3words}
+                <span class="visually-hidden">(opens in new tab)</span>
               </a>
             </p>
             <p class="cannon-row__meta">
@@ -147,7 +148,7 @@ function imageFor(filename: string) {
   }
 
   .cannon-row__meta strong {
-    color: var(--color-accent);
+    color: var(--color-accent-on-dark);
     font-weight: 700;
   }
 

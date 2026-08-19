@@ -19,7 +19,7 @@ const contourImage = await getImage({ src: contourTexture, width: 1600, format: 
 
 <section class="sponsor-strip" style={`background-image: url(${contourImage.src})`}>
   <div class="container sponsor-strip__inner">
-    <h3>Proudly partnering with</h3>
+    <h2>Proudly partnering with</h2>
     <ul class="sponsor-strip__logos">
       {
         sponsors.map((sponsor) => (
@@ -45,9 +45,11 @@ const contourImage = await getImage({ src: contourTexture, width: 1600, format: 
     text-align: center;
   }
 
-  .sponsor-strip h3 {
+  .sponsor-strip h2 {
     color: #fff;
     margin-bottom: 2.5rem;
+    font-size: clamp(1rem, 1vw + 0.85rem, 1.4rem);
+    letter-spacing: 0.14em;
   }
 
   .sponsor-strip__logos {
