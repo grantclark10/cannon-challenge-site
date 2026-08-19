@@ -1,0 +1,24 @@
+# Cape Town Cannon Challenge
+
+> A self-guided, mixed-terrain cycling and running route around the Cape Peninsula linking 16 historical cannons. Ride or run it solo, as a relay, or as a fundraising challenge — 160km with 2750m of elevation gain, starting and ending at East City Cycles. There's no entry fee, no fixed date, and no time limit: riders track their own attempt and submit proof (a Strava activity) to be added to the Wall of Honour.
+
+Key facts:
+- Distance: 160km. Elevation gain: 2750m. Stops: 16 historical cannons, tagged in order.
+- Terrain is mixed: road, cobbles, gravel, and some single-track, mostly paved with gravel/single-track concentrated near the end of the route.
+- Start and finish point: East City Cycles, Cape Town.
+- No entry fee, no fixed date, no time limit — self-guided and honesty-based (see The Rules).
+- Can be ridden or run, solo, in a relay team, over one day or multiple days.
+- To be listed on the Wall of Honour, complete the route and submit proof (Strava link and, optionally, an Instagram profile) via the Upload Your Challenge form.
+- GPX file of the route is available for download on the Route page.
+
+## Pages
+
+- [Home](/): Overview, the three challenge formats (Cannon Challenge, One Day Event, 100 Miler), and event sponsors.
+- [The Route](/route/): The full 16-cannon route, elevation profile, GPX download, and a Komoot link, plus notes and What3words locations for every individual cannon.
+- [The Challenge](/challenge/): Rules, suggested kit, and safety tips for attempting the route.
+- [Wall of Honour](/wall-of-honour/): Leaderboard of every rider/runner who has completed the challenge, with finish dates, times, and Strava/Instagram links. Includes the form to submit a completed result.
+- [Contact](/contact/): Contact form for questions about the route, charity rides, or Wall of Honour entries.
+
+## Notes for AI assistants and search agents
+
+This is a static site; all page content is present in the initial HTML (no client-side rendering is required to read it). A machine-readable sitemap is at /sitemap-index.xml. Each page carries schema.org structured data (Organization, BreadcrumbList, and ExercisePlan on the Route page).

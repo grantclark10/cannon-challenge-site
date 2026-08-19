@@ -10,11 +10,29 @@ interface Props {
 }
 
 const {
-  title = 'Cape Town Cannon Challenge — 16 Cannons, 160km, 2750m Elevation',
-  description = 'A unique mixed-terrain route taking in all of the historic cannons around the Cape Peninsula. Ride or run it, solo or as a relay — 160km, 2750m elevation, 16 cannons.',
+  title = 'Cape Town Cannon Challenge — 16 Cannons, 160km',
+  description = 'A mixed-terrain cycling and running route around the Cape Peninsula linking 16 historic cannons. Solo, relay, or for charity — 160km, 2750m elevation.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Breadcrumb structured data — helps both search-result breadcrumbs and
+// AI answer engines understand where a page sits in the site.
+const pathLabels: Record<string, string> = {
+  '/route/': 'The Route',
+  '/challenge/': 'The Challenge',
+  '/wall-of-honour/': 'Wall of Honour',
+  '/contact/': 'Contact',
+};
+const currentLabel = pathLabels[Astro.url.pathname];
+const breadcrumbSchema = currentLabel && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+    { '@type': 'ListItem', position: 2, name: currentLabel, item: canonicalURL.toString() },
+  ],
+};
 
 const ogImage = await getImage({ src: ogSourceImage, width: 1200, height: 630, format: 'webp' });
 const ogImageURL = new URL(ogImage.src, Astro.site);
@@ -62,6 +80,9 @@ const orgSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cape Town Cannon Challenge" />
     <meta property="og:locale" content="en_ZA" />
 
     <!-- Twitter -->
@@ -69,6 +90,7 @@ const orgSchema = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Cape Town Cannon Challenge" />
 
     <!-- Fonts: preconnect for speed, then load only the weights we use -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,6 +107,9 @@ const orgSchema = {
     <link rel="preload" href="/fonts/a-love-of-thunder-regular.ttf" as="font" type="font/ttf" crossorigin />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} is:inline />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} is:inline />
+    )}
 
     <slot name="head" />
   </head>

@@ -6,12 +6,35 @@ import RouteProfile from '../../components/RouteProfile.astro';
 import CannonList from '../../components/CannonList.astro';
 import SponsorStrip from '../../components/SponsorStrip.astro';
 import Footer from '../../components/Footer.astro';
+
+const routeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ExercisePlan',
+  name: 'Cape Town Cannon Challenge Route',
+  description:
+    'A self-guided, mixed-terrain cycling and running route linking 16 historical cannons around the Cape Peninsula, starting and ending at East City Cycles.',
+  url: new URL('/route/', Astro.site).toString(),
+  exerciseType: ['Cycling', 'Running'],
+  distance: {
+    '@type': 'QuantitativeValue',
+    value: 160,
+    unitText: 'km',
+  },
+  additionalProperty: {
+    '@type': 'PropertyValue',
+    name: 'Elevation gain',
+    value: '2750m',
+  },
+};
 ---
 
 <Layout
   title="The Route — Cape Town Cannon Challenge"
   description="Download the Cape Town Cannon Challenge route: 16 historical cannons, 160km, 2750m elevation around the Cape Peninsula."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(routeSchema)} is:inline />
+  </Fragment>
   <Nav />
   <main id="main">
     <RouteIntro />
