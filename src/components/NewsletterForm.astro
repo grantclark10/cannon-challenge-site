@@ -85,6 +85,18 @@
     flex-shrink: 0;
   }
 
+  @media (max-width: 600px) {
+    .newsletter__field-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .newsletter__field-row input {
+      flex-basis: auto;
+      width: 100%;
+    }
+  }
+
   .newsletter__honeypot {
     position: absolute;
     left: -5000px;
