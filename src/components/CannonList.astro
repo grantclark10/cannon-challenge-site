@@ -96,9 +96,8 @@ function imageFor(filename: string) {
 
   .cannon-row__number {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translate(30%, 30%);
+    top: clamp(1rem, 2.5vw, 1.75rem);
+    left: clamp(1rem, 2.5vw, 1.75rem);
     width: clamp(64px, 7vw, 92px);
     height: clamp(64px, 7vw, 92px);
     border-radius: 50%;
@@ -111,12 +110,6 @@ function imageFor(filename: string) {
     font-weight: 800;
     font-size: clamp(1.5rem, 2.5vw, 2.1rem);
     box-shadow: 0 0 0 6px var(--color-bg);
-  }
-
-  .cannon-row--reverse .cannon-row__number {
-    right: auto;
-    left: 0;
-    transform: translate(-30%, 30%);
   }
 
   .cannon-row__panel {
@@ -166,12 +159,6 @@ function imageFor(filename: string) {
     .cannon-row,
     .cannon-row--reverse {
       flex-direction: column;
-    }
-
-    .cannon-row--reverse .cannon-row__number {
-      right: 0;
-      left: auto;
-      transform: translate(30%, 30%);
     }
 
     .cannon-row__panel {
