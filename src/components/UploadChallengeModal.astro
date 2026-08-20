@@ -99,7 +99,7 @@
     </form>
 
     <div class="upload-modal__success" role="status" hidden>
-      <p>Thanks! Your result has been submitted — we'll add you to the Wall of Honour once it's verified.</p>
+      <p><span class="upload-modal__success-emoji">💣</span> Thanks! Your result has been submitted — we'll add you to the Wall of Honour once it's verified.</p>
     </div>
   </div>
 </dialog>
@@ -275,6 +275,10 @@
   .upload-modal__success {
     text-align: center;
     font-family: var(--font-title);
+  }
+
+  .upload-modal__success-emoji {
+    margin-right: 0.35em;
   }
 
   @media (max-width: 480px) {
