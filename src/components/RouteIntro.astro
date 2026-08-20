@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import routeMap from '../assets/images/route-map-desktop.jpg';
 
 const anchorLinks = [
-  { href: '#route', label: 'The Route' },
-  { href: '#profile', label: 'The Profile' },
-  { href: '#cannons', label: 'The Cannons' },
+  { href: '#route', label: 'View The Route' },
+  { href: '#profile', label: 'View The Profile' },
+  { href: '#cannons', label: 'View The Cannons' },
 ];
 ---
 
@@ -71,22 +71,27 @@ const anchorLinks = [
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.25rem 2.5rem;
     margin-bottom: 1.75rem;
   }
 
   .route-intro__anchors a {
     font-family: var(--font-title);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--color-accent-on-dark);
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--color-accent-on-dark);
+    border-radius: var(--radius-pill);
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
   .route-intro__anchors a:hover,
   .route-intro__anchors a:focus-visible {
     color: #fff;
+    border-color: #fff;
   }
 
   .route-intro__copy .lede {
