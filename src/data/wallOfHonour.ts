@@ -88,6 +88,19 @@ export const wallOfHonour: WallOfHonourEntry[] = [
   },
   {
     rank: 6,
+    name: 'Alec Gates',
+    isFemale: false,
+    isRecordHolder: false,
+    dateStart: '2024-09-01',
+    dateEnd: '2024-09-01',
+    timeHours: 8,
+    timeMinutes: 5,
+    timeSeconds: 6,
+    stravaUrl: 'https://www.strava.com/activities/12298876800',
+    instagramUrl: 'https://www.instagram.com/alec.gates/',
+  },
+  {
+    rank: 7,
     name: 'Ryno van Wyk',
     isFemale: false,
     isRecordHolder: false,
@@ -100,7 +113,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/ryno_v_wyk/',
   },
   {
-    rank: 7,
+    rank: 8,
     name: 'Charl Neethling',
     isFemale: false,
     isRecordHolder: false,
@@ -113,7 +126,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/charl_i_am/',
   },
   {
-    rank: 8,
+    rank: 9,
     name: 'Carl Jones',
     isFemale: false,
     isRecordHolder: false,
@@ -126,7 +139,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/Carldavidjones/',
   },
   {
-    rank: 9,
+    rank: 10,
     name: 'Jono Botha',
     isFemale: false,
     isRecordHolder: false,
@@ -138,7 +151,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/7028202445',
   },
   {
-    rank: 10,
+    rank: 11,
     name: 'Kieran McKenna',
     isFemale: false,
     isRecordHolder: false,
@@ -151,7 +164,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/kieran.patrick.mckenna',
   },
   {
-    rank: 11,
+    rank: 12,
     name: 'Tony Lotter',
     isFemale: false,
     isRecordHolder: false,
@@ -164,7 +177,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/tonylotter/',
   },
   {
-    rank: 12,
+    rank: 13,
     name: 'Mike Loranty',
     isFemale: false,
     isRecordHolder: false,
@@ -177,7 +190,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/mikeloranty/',
   },
   {
-    rank: 13,
+    rank: 14,
     name: 'Justin George Leslie',
     isFemale: false,
     isRecordHolder: false,
@@ -190,7 +203,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/justingeorgeleslie/',
   },
   {
-    rank: 14,
+    rank: 15,
     name: 'Pete Calitz',
     isFemale: false,
     isRecordHolder: false,
@@ -203,7 +216,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/pistoltheheat/',
   },
   {
-    rank: 15,
+    rank: 16,
     name: 'Daniel Dobinson',
     isFemale: false,
     isRecordHolder: false,
@@ -216,7 +229,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/irideafrica/',
   },
   {
-    rank: 16,
+    rank: 17,
     name: 'Theuns van der Bank',
     isFemale: false,
     isRecordHolder: false,
@@ -229,7 +242,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/theuns_vdbank/',
   },
   {
-    rank: 17,
+    rank: 18,
     name: 'Francois Willemburg',
     isFemale: false,
     isRecordHolder: false,
@@ -242,7 +255,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/francoiswillemburg/',
   },
   {
-    rank: 18,
+    rank: 19,
     name: 'Jonathan Fisher',
     isFemale: false,
     isRecordHolder: false,
@@ -254,7 +267,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/7860534682',
   },
   {
-    rank: 19,
+    rank: 20,
     name: 'Ben Fisher',
     isFemale: false,
     isRecordHolder: false,
@@ -266,7 +279,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/7860937911',
   },
   {
-    rank: 20,
+    rank: 21,
     name: 'Johan du Plessis',
     isFemale: false,
     isRecordHolder: false,
@@ -279,7 +292,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/jjdup_/',
   },
   {
-    rank: 21,
+    rank: 22,
     name: 'Bruce Biccard',
     isFemale: false,
     isRecordHolder: false,
@@ -292,7 +305,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/brucebiccard',
   },
   {
-    rank: 22,
+    rank: 23,
     name: 'Kris Le Cok',
     isFemale: true,
     isRecordHolder: true,
@@ -305,7 +318,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/krislecok/',
   },
   {
-    rank: 23,
+    rank: 24,
     name: 'Marc Erasmus',
     isFemale: false,
     isRecordHolder: false,
@@ -318,7 +331,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/marc.erasmus/',
   },
   {
-    rank: 24,
+    rank: 25,
     name: 'Tom Van Vlaanderen',
     isFemale: false,
     isRecordHolder: false,
@@ -331,7 +344,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/tomvanvlaanderen/',
   },
   {
-    rank: 25,
+    rank: 26,
     name: 'Jack MacDiarmid',
     isFemale: false,
     isRecordHolder: false,
@@ -342,7 +355,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     timeSeconds: 0,
   },
   {
-    rank: 26,
+    rank: 27,
     name: 'Grant Clark',
     isFemale: false,
     isRecordHolder: false,
@@ -355,7 +368,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/grantclark10',
   },
   {
-    rank: 27,
+    rank: 28,
     name: 'Simon Cartwright Nicks',
     isFemale: false,
     isRecordHolder: false,
@@ -367,7 +380,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://strava.app.link/yhHfW5csdqb',
   },
   {
-    rank: 28,
+    rank: 29,
     name: 'Guy Jennings',
     isFemale: false,
     isRecordHolder: false,
@@ -380,7 +393,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/Guyjennings_yodawisdom/',
   },
   {
-    rank: 29,
+    rank: 30,
     name: 'Malcolm Isaacs',
     isFemale: false,
     isRecordHolder: false,
@@ -392,7 +405,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/7479575522',
   },
   {
-    rank: 30,
+    rank: 31,
     name: 'Adrian Combrink',
     isFemale: false,
     isRecordHolder: false,
@@ -404,7 +417,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/athletes/18882976',
   },
   {
-    rank: 31,
+    rank: 32,
     name: 'Mario Santana',
     isFemale: false,
     isRecordHolder: false,
@@ -417,7 +430,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/aldukie/',
   },
   {
-    rank: 32,
+    rank: 33,
     name: 'Kieran McKenna',
     isFemale: false,
     isRecordHolder: false,
@@ -430,7 +443,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/kieran.patrick.mckenna/',
   },
   {
-    rank: 33,
+    rank: 34,
     name: 'Reece Bezuidenhout',
     isFemale: false,
     isRecordHolder: false,
@@ -443,7 +456,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/reece_bezuidenhout/',
   },
   {
-    rank: 34,
+    rank: 35,
     name: 'Jannie Du Toit',
     isFemale: false,
     isRecordHolder: false,
@@ -455,7 +468,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/8472737025',
   },
   {
-    rank: 35,
+    rank: 36,
     name: 'Tom Blok',
     isFemale: false,
     isRecordHolder: false,
@@ -467,7 +480,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/8472732181',
   },
   {
-    rank: 36,
+    rank: 37,
     name: 'Garth Petersen',
     isFemale: false,
     isRecordHolder: false,
@@ -480,7 +493,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/garthpetersen1/',
   },
   {
-    rank: 37,
+    rank: 38,
     name: 'Bruce Biccard',
     isFemale: false,
     isRecordHolder: false,
@@ -493,7 +506,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/brucebiccard/',
   },
   {
-    rank: 38,
+    rank: 39,
     name: 'Michael Whittaker',
     isFemale: false,
     isRecordHolder: false,
@@ -505,7 +518,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/athletes/6380062',
   },
   {
-    rank: 39,
+    rank: 40,
     name: 'Suanne Whittaker',
     isFemale: true,
     isRecordHolder: false,
@@ -518,7 +531,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/su_whittaker/',
   },
   {
-    rank: 40,
+    rank: 41,
     name: 'Rinette Burger',
     isFemale: true,
     isRecordHolder: false,
@@ -531,7 +544,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/rs._.burger/',
   },
   {
-    rank: 41,
+    rank: 42,
     name: 'Jarryd Haley',
     isFemale: false,
     isRecordHolder: false,
@@ -544,7 +557,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/Jarryd_Haley/',
   },
   {
-    rank: 42,
+    rank: 43,
     name: 'Brett Parish',
     isFemale: false,
     isRecordHolder: false,
@@ -557,7 +570,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/buffsvintagebikes/',
   },
   {
-    rank: 43,
+    rank: 44,
     name: 'Andrew Savage',
     isFemale: false,
     isRecordHolder: false,
@@ -570,7 +583,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/savagedru',
   },
   {
-    rank: 44,
+    rank: 45,
     name: 'John Rostance',
     isFemale: false,
     isRecordHolder: false,
@@ -583,7 +596,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/toastttoast/',
   },
   {
-    rank: 45,
+    rank: 46,
     name: 'Scott O\'Connor',
     isFemale: false,
     isRecordHolder: false,
@@ -596,7 +609,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/scottoc78',
   },
   {
-    rank: 46,
+    rank: 47,
     name: 'Harry Millar',
     isFemale: false,
     isRecordHolder: false,
@@ -609,7 +622,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/the_habrador/',
   },
   {
-    rank: 47,
+    rank: 48,
     name: 'Tom Bishop',
     isFemale: false,
     isRecordHolder: false,
@@ -621,7 +634,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     stravaUrl: 'https://www.strava.com/activities/8515148825',
   },
   {
-    rank: 48,
+    rank: 49,
     name: 'Irmilee Uys',
     isFemale: true,
     isRecordHolder: false,
@@ -634,7 +647,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/irmilee.uys/',
   },
   {
-    rank: 49,
+    rank: 50,
     name: 'Jana van der Merwe',
     isFemale: true,
     isRecordHolder: false,
@@ -647,7 +660,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/janamartvdm/',
   },
   {
-    rank: 50,
+    rank: 51,
     name: 'Lisa du Plessis',
     isFemale: true,
     isRecordHolder: false,
@@ -659,7 +672,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/lisaduplessis97/',
   },
   {
-    rank: 51,
+    rank: 52,
     name: 'Johan Lötter',
     isFemale: false,
     isRecordHolder: false,
@@ -672,7 +685,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://instagram.com/johanlotter?igshid=YmMyMTA2M2Y=',
   },
   {
-    rank: 52,
+    rank: 53,
     name: 'Sarah Atmore',
     isFemale: true,
     isRecordHolder: false,
@@ -685,7 +698,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/sarahatmore/',
   },
   {
-    rank: 53,
+    rank: 54,
     name: 'Leo Simpson',
     isFemale: false,
     isRecordHolder: false,
@@ -698,7 +711,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/Leo.Simpson.10/',
   },
   {
-    rank: 54,
+    rank: 55,
     name: 'Clint Cawood',
     isFemale: false,
     isRecordHolder: false,
@@ -711,7 +724,7 @@ export const wallOfHonour: WallOfHonourEntry[] = [
     instagramUrl: 'https://www.instagram.com/clintcaw/',
   },
   {
-    rank: 55,
+    rank: 56,
     name: 'Michael Bynens',
     isFemale: false,
     isRecordHolder: false,
