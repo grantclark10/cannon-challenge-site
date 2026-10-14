@@ -268,6 +268,11 @@
     margin: 0;
   }
 
+  .upload-modal__error :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   #upload-challenge-submit {
     align-self: stretch;
   }
@@ -309,9 +314,40 @@
     if (openBtn instanceof HTMLElement) openBtn.focus();
   });
 
+  // The form promises "max 2mb" for the photo; enforce it up front with the
+  // browser's native validation bubble instead of letting a big file fail
+  // server-side with a vague error.
+  const photoInput = document.getElementById('uc-photo') as HTMLInputElement | null;
+  const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
+  const FALLBACK_EMAIL = 'hello@cannonchallenge.capetown';
+
+  function checkPhotoSize() {
+    const file = photoInput?.files?.[0];
+    photoInput?.setCustomValidity(
+      file && file.size > MAX_PHOTO_BYTES
+        ? `That photo is ${(file.size / 1024 / 1024).toFixed(1)}MB. Please choose one under 2MB.`
+        : ''
+    );
+  }
+  photoInput?.addEventListener('change', checkPhotoSize);
+
+  // Show a specific message plus a mailto fallback. The email address is a
+  // real link built with DOM nodes; the server-provided reason is only ever
+  // inserted as text.
+  function showError(message: string, hint = 'If it keeps happening, email us at ') {
+    if (!errorEl) return;
+    errorEl.textContent = `${message} ${hint}`;
+    const link = document.createElement('a');
+    link.href = `mailto:${FALLBACK_EMAIL}`;
+    link.textContent = FALLBACK_EMAIL;
+    errorEl.append(link, '.');
+    errorEl.hidden = false;
+  }
+
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
+    checkPhotoSize();
     if (!form.reportValidity()) return;
 
     if (errorEl) errorEl.hidden = true;
@@ -327,16 +363,32 @@
         headers: { Accept: 'application/json' },
       });
 
-      if (!response.ok) throw new Error('Formspree responded with an error');
+      if (!response.ok) {
+        // Formspree answers with { error, errors: [{ message }] } — surface it.
+        const data = await response.json().catch(() => null);
+        const reason: string =
+          data?.errors?.map((e: { message?: string }) => e.message).filter(Boolean).join(' ') ||
+          data?.error ||
+          '';
+
+        if (/file upload/i.test(reason)) {
+          showError(
+            "Photo uploads aren't available right now. Please remove the photo and submit again.",
+            'You can email your photo to '
+          );
+        } else if (reason) {
+          showError(`Submission failed: ${reason.replace(/\.$/, '')}.`);
+        } else {
+          showError('Something went wrong submitting your result. Please try again.');
+        }
+        return;
+      }
 
       form.hidden = true;
       successEl?.removeAttribute('hidden');
       form.reset();
     } catch {
-      if (errorEl) {
-        errorEl.textContent = 'Something went wrong. Please try again, or email us directly.';
-        errorEl.hidden = false;
-      }
+      showError("We couldn't reach the server. Check your connection and try again.");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
