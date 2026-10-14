@@ -1,8 +1,11 @@
 ---
 // "Upload Your Challenge" popup — recreated from the client's screenshots
 // of the original Elementor popup form. Posts to Formspree (same pattern
-// as ContactForm.astro), including the optional photo via multipart
-// form data, which Formspree supports on all plans.
+// as ContactForm.astro).
+//
+// There is deliberately no photo upload: this form's Formspree plan rejects
+// file attachments ("File Uploads Not Permitted"), so riders are asked to
+// send or tag photos on Instagram instead.
 ---
 
 <button type="button" class="btn" id="upload-challenge-open">Upload Your Challenge</button>
@@ -21,7 +24,6 @@
     <form
       action="https://formspree.io/f/myegbnvq"
       method="POST"
-      enctype="multipart/form-data"
       id="upload-challenge-form"
       novalidate
     >
@@ -85,13 +87,15 @@
         </div>
       </div>
 
-      <div class="upload-modal__field">
-        <div class="upload-modal__photo-label">
-          <label for="uc-photo">Upload Photo (Optional)</label>
-          <span class="upload-modal__photo-hint">Max 2mb file size</span>
-        </div>
-        <input type="file" name="photo" id="uc-photo" accept="image/*" />
-      </div>
+      <p class="upload-modal__photo-note">
+        Got a photo from your challenge? Send it to us or tag us on Instagram:{' '}
+        <a
+          href="https://www.instagram.com/capetowncannonchallenge/"
+          target="_blank"
+          rel="noopener"
+          >@capetowncannonchallenge<span class="visually-hidden"> (opens in new tab)</span></a
+        >
+      </p>
 
       <p class="upload-modal__error" role="alert" hidden></p>
 
@@ -215,22 +219,17 @@
     letter-spacing: 0.04em;
   }
 
-  .upload-modal__photo-label {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
+  .upload-modal__photo-note {
+    margin: 0;
+    max-width: none;
+    font-size: 0.95rem;
+    color: var(--color-muted);
   }
 
-  .upload-modal__photo-hint {
-    font-family: var(--font-title);
+  .upload-modal__photo-note a {
     font-weight: 700;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--color-muted);
-    text-align: right;
-    white-space: nowrap;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .upload-modal__field input,
@@ -314,29 +313,14 @@
     if (openBtn instanceof HTMLElement) openBtn.focus();
   });
 
-  // The form promises "max 2mb" for the photo; enforce it up front with the
-  // browser's native validation bubble instead of letting a big file fail
-  // server-side with a vague error.
-  const photoInput = document.getElementById('uc-photo') as HTMLInputElement | null;
-  const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
   const FALLBACK_EMAIL = 'hello@cannonchallenge.capetown';
-
-  function checkPhotoSize() {
-    const file = photoInput?.files?.[0];
-    photoInput?.setCustomValidity(
-      file && file.size > MAX_PHOTO_BYTES
-        ? `That photo is ${(file.size / 1024 / 1024).toFixed(1)}MB. Please choose one under 2MB.`
-        : ''
-    );
-  }
-  photoInput?.addEventListener('change', checkPhotoSize);
 
   // Show a specific message plus a mailto fallback. The email address is a
   // real link built with DOM nodes; the server-provided reason is only ever
   // inserted as text.
-  function showError(message: string, hint = 'If it keeps happening, email us at ') {
+  function showError(message: string) {
     if (!errorEl) return;
-    errorEl.textContent = `${message} ${hint}`;
+    errorEl.textContent = `${message} If it keeps happening, email us at `;
     const link = document.createElement('a');
     link.href = `mailto:${FALLBACK_EMAIL}`;
     link.textContent = FALLBACK_EMAIL;
@@ -347,7 +331,6 @@
   form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    checkPhotoSize();
     if (!form.reportValidity()) return;
 
     if (errorEl) errorEl.hidden = true;
@@ -371,12 +354,7 @@
           data?.error ||
           '';
 
-        if (/file upload/i.test(reason)) {
-          showError(
-            "Photo uploads aren't available right now. Please remove the photo and submit again.",
-            'You can email your photo to '
-          );
-        } else if (reason) {
+        if (reason) {
           showError(`Submission failed: ${reason.replace(/\.$/, '')}.`);
         } else {
           showError('Something went wrong submitting your result. Please try again.');
