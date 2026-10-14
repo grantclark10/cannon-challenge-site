@@ -90,10 +90,10 @@
       <p class="upload-modal__photo-note">
         Got a photo from your challenge? Send it to us or tag us on Instagram:{' '}
         <a
-          href="https://www.instagram.com/capetowncannonchallenge/"
+          href="https://www.instagram.com/ctcannonchallenge/"
           target="_blank"
           rel="noopener"
-          >@capetowncannonchallenge<span class="visually-hidden"> (opens in new tab)</span></a
+          >@ctcannonchallenge<span class="visually-hidden"> (opens in new tab)</span></a
         >
       </p>
 
@@ -234,6 +234,8 @@
 
   .upload-modal__field input,
   .upload-modal__field textarea {
+    width: 100%;
+    min-width: 0;
     font-family: var(--font-body);
     font-size: 1rem;
     padding: 0.7rem 0.9rem;
@@ -250,14 +252,23 @@
     border-color: var(--color-accent);
   }
 
+  /* minmax(0, 1fr) + min-width: 0 let the columns shrink below an input's
+     intrinsic width; with plain 1fr the three time boxes overflowed the
+     modal by ~40px between the 480px breakpoint and ~540px wide. */
   .upload-modal__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+    /* keep the input boxes level when one label wraps to two lines */
+    align-items: end;
   }
 
   .upload-modal__row:has(#uc-hours) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .upload-modal__row > .upload-modal__field {
+    min-width: 0;
   }
 
   .upload-modal__error {
